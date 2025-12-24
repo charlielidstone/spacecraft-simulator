@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="SpacecraftSimulator/SpacecraftSimulator.vcxproj" />
+  <Project Path="SpacecraftSimulator/SpacecraftSimulator.vcxproj" Id="b27c33ee-5de5-4687-82f9-b13f7f73b136" />
 </Solution>

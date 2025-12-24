@@ -134,10 +134,11 @@
     <ClCompile Include="Simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BodyState.hpp" />
-    <ClInclude Include="Simulation.hpp" />
-    <ClInclude Include="Vector2.hpp" />
-    <ClInclude Include="WorldState.hpp" />
+    <ClInclude Include="math\Vector2.hpp" />
+    <ClInclude Include="physics\Force.hpp" />
+    <ClInclude Include="simulation\Simulation.hpp" />
+    <ClInclude Include="state\RigidBody.hpp" />
+    <ClInclude Include="state\WorldState.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

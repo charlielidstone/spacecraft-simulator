@@ -21,6 +21,10 @@ struct Vector2 {
 	Vector2 operator*(const double& scalar) const {
 		return { x * scalar, y * scalar };
 	}
+
+	Vector2 operator/(const double& scalar) const {
+		return { x / scalar, y / scalar };
+	}
 };
 
 #endif

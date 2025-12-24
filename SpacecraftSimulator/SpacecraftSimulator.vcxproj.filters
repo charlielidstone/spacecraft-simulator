@@ -35,17 +35,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BodyState.hpp">
+    <ClInclude Include="math\Vector2.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="state\WorldState.hpp">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="simulation\Simulation.hpp">
+      <Filter>simulation</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\Force.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WorldState.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="state\RigidBody.hpp">
+      <Filter>physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

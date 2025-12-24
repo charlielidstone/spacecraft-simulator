@@ -1,16 +1,28 @@
 #include "simulation/Simulation.hpp"
+#include "math/Vector2.hpp"
 #include <iostream>
 
 Simulation::Simulation(double timestep) : dt(timestep) {
 	state.body.mass = 1.0;
 	state.body.position = { 0.0, 10.0 };
 	state.body.velocity = { 0.0, 0.0 };
+
+	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 }
 
 void Simulation::step() {
-	Vector2 gravityForce(0.0, -9.80 * state.body.mass);
+	Vector2 netForce{ 0.0, 0.0 };
+	double netTorque = 0.0;
 
-	Vector2 acceleration = gravityForce * (1.0 / state.body.mass);
+	for (const auto& force : forces) {
+		netForce += force->computeForce(state.body);
+		netTorque += force->computeTorque(state.body);
+	}
+
+	// print net force for debugging
+	std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";
+
+	Vector2 acceleration = netForce / state.body.mass;
 
 	state.body.velocity += acceleration * dt;
 	state.body.position += state.body.velocity * dt;

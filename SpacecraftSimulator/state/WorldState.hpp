@@ -1,11 +1,11 @@
 #ifndef WORLDSTATE_HPP
 #define WORLDSTATE_HPP
 
-#include "BodyState.hpp"
+#include "../physics/RigidBody.hpp"
 
 struct WorldState {
 	double time;
-	BodyState body;
+	RigidBody body;
 };
 
 #endif

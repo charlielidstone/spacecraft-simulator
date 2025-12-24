@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "simulation/Simulation.hpp"
+#include <iomanip>
 
 int main(void) {
 
@@ -9,14 +10,33 @@ int main(void) {
 
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), "Spacecraft Simulator");
 
-	double timestep = (1 / 60.0);
+	double timestep = (1 / 120.0);
 	Simulation sim(timestep);
+
+	const WorldState& state = sim.getState();
 
 	constexpr auto ROCKET_RADIUS = 5.0F;
 	sf::CircleShape rocket(ROCKET_RADIUS);
 	rocket.setFillColor(sf::Color::White);
 
-	while (window.isOpen()) {
+	std::cout
+		<< "t = " << std::fixed << std::setprecision(4) << state.time
+		<< ", y = " << state.body.position.y
+		<< ", Vy = " << state.body.velocity.y
+		<< std::endl;
+
+	for (int i = 0; i < 1000; i++) {
+		sim.step();
+		const WorldState& state = sim.getState();
+
+		std::cout
+			<< "t = " << std::fixed << std::setprecision(4) << state.time
+			<< ", y = " << state.body.position.y
+			<< ", Vy = " << state.body.velocity.y
+			<< std::endl;
+	}
+
+	/*while (window.isOpen()) {
 		while (const std::optional event = window.pollEvent()) {
 			if (event->is<sf::Event::Closed>()) {
 				window.close();
@@ -28,14 +48,14 @@ int main(void) {
 		const WorldState& state = sim.getState();
 
 		rocket.setPosition({
-				static_cast<float>(state.body.position.x),
-				static_cast<float>(600.0 - state.body.position.y)
-			});
+			static_cast<float>(state.body.position.x),
+			static_cast<float>(WINDOW_HEIGHT - state.body.position.y)
+		});
 
 		window.clear();
 		window.draw(rocket);
 		window.display();
-	}
+	}*/
 
 	return 0;
 }

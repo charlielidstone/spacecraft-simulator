@@ -1,9 +1,9 @@
-#ifndef BODYSTATE_HPP
-#define BODYSTATE_HPP
+#ifndef RIGIDBODY_HPP
+#define RIGIDBODY_HPP
 
 #include "../math/Vector2.hpp"
 
-struct BodyState {
+struct RigidBody {
 	Vector2 position;
 	Vector2 velocity;
 	double mass;
