@@ -23,6 +23,10 @@ int main(void) {
 	sf::CircleShape rocket(ROCKET_RADIUS);
 	rocket.setFillColor(sf::Color::White);
 
+	sf::Clock delayClock;
+	constexpr float DELAY_SECONDS = 2.0f;
+	bool simulationStarted = false;
+
 	/*std::cout
 		<< "t = " << std::fixed << std::setprecision(4) << state.time
 		<< ", y = " << state.body.position.y
@@ -47,7 +51,13 @@ int main(void) {
 			}
 		}
 
-		sim.step();
+		if (!simulationStarted && delayClock.getElapsedTime().asSeconds() >= DELAY_SECONDS) {
+			simulationStarted = true;
+		}
+
+		if (simulationStarted) {
+			sim.step();
+		}
 
 		const WorldState& state = sim.getState();
 
