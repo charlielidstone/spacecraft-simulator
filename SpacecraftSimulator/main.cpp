@@ -19,6 +19,13 @@ int main(void) {
 
 	const WorldState& state = sim.getState();
 
+	sf::RectangleShape marker1(sf::Vector2f(1.0, 20.0));
+	marker1.setFillColor(sf::Color::Red);
+	marker1.setPosition({ sf::Vector2f(static_cast<float>(ORIGIN.x - 50), static_cast<float>(ORIGIN.y)) });
+	sf::RectangleShape marker2(sf::Vector2f(1.0, 20.0));
+	marker2.setFillColor(sf::Color::Blue);
+	marker2.setPosition({ sf::Vector2f(static_cast<float>(ORIGIN.x + 50), static_cast<float>(ORIGIN.y)) });
+
 	constexpr auto ROCKET_RADIUS = 5.0F;
 	sf::CircleShape rocket(ROCKET_RADIUS);
 	rocket.setFillColor(sf::Color::White);
@@ -27,22 +34,13 @@ int main(void) {
 	constexpr float DELAY_SECONDS = 2.0f;
 	bool simulationStarted = false;
 
-	/*std::cout
-		<< "t = " << std::fixed << std::setprecision(4) << state.time
-		<< ", y = " << state.body.position.y
-		<< ", Vy = " << state.body.velocity.y
-		<< std::endl;
+	// set origin of all shapes to center
+	rocket.setOrigin(sf::Vector2f(ROCKET_RADIUS, ROCKET_RADIUS));
+	marker1.setOrigin(sf::Vector2f(0.5F, 10.0F));
+	marker2.setOrigin(sf::Vector2f(0.5F, 10.0F));
 
-	for (int i = 0; i < (5/timestep); i++) {
-		sim.step();
-		const WorldState& state = sim.getState();
-
-		std::cout
-			<< "t = " << std::fixed << std::setprecision(4) << state.time
-			<< ", y = " << state.body.position.y
-			<< ", Vy = " << state.body.velocity.y
-			<< std::endl;
-	}*/
+	sf::Clock frameClock;
+	double accumulator = 0.0;
 
 	while (window.isOpen()) {
 		while (const std::optional event = window.pollEvent()) {
@@ -56,7 +54,22 @@ int main(void) {
 		}
 
 		if (simulationStarted) {
-			sim.step();
+			double frameTime = frameClock.restart().asSeconds();
+			std::cout << "Frame Time: " << std::fixed << std::setprecision(4) << frameTime << " seconds\n";
+
+			/*if (frameTime > 0.25) {
+				frameTime = 0.25;
+			}*/
+
+			accumulator += frameTime;
+
+			while (accumulator >= timestep) {
+				std::cout << "Accumulator: " << std::fixed << std::setprecision(4) << accumulator << " seconds\n";
+				sim.step();
+				accumulator -= timestep;
+			}
+		} else {
+			frameClock.restart();
 		}
 
 		const WorldState& state = sim.getState();
@@ -68,6 +81,8 @@ int main(void) {
 
 		window.clear();
 		window.draw(rocket);
+		window.draw(marker1);
+		window.draw(marker2);
 		window.display();
 	}
 

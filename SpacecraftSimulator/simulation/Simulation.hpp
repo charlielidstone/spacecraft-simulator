@@ -18,6 +18,9 @@ class Simulation {
 		double dt;
 		WorldState state;
 		std::vector<std::unique_ptr<Force>> forces;
+		int count = 0;
+
+		void simulateGpuDelay();
 };
 
 #endif

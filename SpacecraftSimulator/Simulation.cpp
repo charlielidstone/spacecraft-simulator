@@ -1,18 +1,30 @@
 #include "simulation/Simulation.hpp"
 #include "math/Vector2.hpp"
 #include <iostream>
+#include <cmath>
 
 Simulation::Simulation(double timestep) : dt(timestep) {
 	state.time = 0.0;
 	
 	state.body.mass = 10.0;
-	state.body.position = { 0.0, 0.0 };
-	state.body.velocity = { 0.0, 0.0 };
+	state.body.position = { -50.0, 0.0 };
+	state.body.velocity = { 10.0, 0.0 };
 	state.body.id = 0;
 	state.body.throttle = 1.0;
 
 	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
-	//forces.push_back(std::make_unique<ThrustForce>(98.2, 0));
+	//forces.push_back(std::make_unique<ThrustForce>(0, 0));
+}
+
+void Simulation::simulateGpuDelay() {
+	// Simulate GPU computational load with actual work
+	// Adjust iterations to match desired performance characteristics
+	const int iterations = 1000000;
+	volatile double result = 0.0;
+	
+	for (int i = 0; i < iterations; ++i) {
+		result += std::sin(i * 0.001) * std::cos(i * 0.001);
+	}
 }
 
 void Simulation::step() {
@@ -32,6 +44,10 @@ void Simulation::step() {
 	state.body.position += state.body.velocity * dt;
 
 	state.time += dt;
+
+	std::cout << count++ << std::endl;
+
+	simulateGpuDelay();
 }
 
 const WorldState& Simulation::getState() const {
