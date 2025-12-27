@@ -10,6 +10,8 @@ int main(void) {
 
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), "Spacecraft Simulator");
 
+	const Vector2 ORIGIN = { WINDOW_WIDTH / 2.0, WINDOW_HEIGHT / 2.0 };
+
 	constexpr double SIM_FREQ_HZ = 120.0;
 
 	double timestep = (1 / SIM_FREQ_HZ);
@@ -21,7 +23,7 @@ int main(void) {
 	sf::CircleShape rocket(ROCKET_RADIUS);
 	rocket.setFillColor(sf::Color::White);
 
-	std::cout
+	/*std::cout
 		<< "t = " << std::fixed << std::setprecision(4) << state.time
 		<< ", y = " << state.body.position.y
 		<< ", Vy = " << state.body.velocity.y
@@ -36,9 +38,9 @@ int main(void) {
 			<< ", y = " << state.body.position.y
 			<< ", Vy = " << state.body.velocity.y
 			<< std::endl;
-	}
+	}*/
 
-	/*while (window.isOpen()) {
+	while (window.isOpen()) {
 		while (const std::optional event = window.pollEvent()) {
 			if (event->is<sf::Event::Closed>()) {
 				window.close();
@@ -50,14 +52,14 @@ int main(void) {
 		const WorldState& state = sim.getState();
 
 		rocket.setPosition({
-			static_cast<float>(state.body.position.x),
-			static_cast<float>(WINDOW_HEIGHT - state.body.position.y)
+			static_cast<float>(ORIGIN.x + state.body.position.x),
+			static_cast<float>(ORIGIN.y - state.body.position.y)
 		});
 
 		window.clear();
 		window.draw(rocket);
 		window.display();
-	}*/
+	}
 
 	return 0;
 }

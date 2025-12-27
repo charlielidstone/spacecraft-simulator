@@ -25,6 +25,9 @@
     <Filter Include="simulation">
       <UniqueIdentifier>{d39e13a6-277e-49a9-a22d-02f183e189ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rendering">
+      <UniqueIdentifier>{0fd9ef5d-9917-48c0-879b-3f7e0ce7fb59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -35,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="Integrator.hpp">
       <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.hpp">
+      <Filter>rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

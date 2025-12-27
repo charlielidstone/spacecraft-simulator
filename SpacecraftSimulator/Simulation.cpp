@@ -6,13 +6,13 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 	state.time = 0.0;
 	
 	state.body.mass = 3.0;
-	state.body.position = { 0.0, 10.0 };
-	state.body.velocity = { 0.0, 0.0 };
+	state.body.position = { 0.0, 0.0 };
+	state.body.velocity = { -1.0, 0.0 };
 	state.body.id = 0;
 	state.body.throttle = 1.0;
 
-	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
-	forces.push_back(std::make_unique<ThrustForce>(100, 0));
+	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
+	//forces.push_back(std::make_unique<ThrustForce>(10, 0));
 }
 
 void Simulation::step() {

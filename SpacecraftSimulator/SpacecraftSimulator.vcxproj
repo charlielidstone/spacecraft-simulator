@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Integrator.hpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Renderer.hpp" />
     <ClCompile Include="Simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
