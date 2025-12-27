@@ -1,7 +1,7 @@
 #ifndef WORLDSTATE_HPP
 #define WORLDSTATE_HPP
 
-#include "../physics/RigidBody.hpp"
+#include "../state/RigidBody.hpp"
 
 struct WorldState {
 	double time;

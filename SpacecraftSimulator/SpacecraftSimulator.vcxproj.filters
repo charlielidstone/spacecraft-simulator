@@ -33,6 +33,9 @@
     <ClCompile Include="Simulation.cpp">
       <Filter>simulation</Filter>
     </ClCompile>
+    <ClCompile Include="Integrator.hpp">
+      <Filter>math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector2.hpp">

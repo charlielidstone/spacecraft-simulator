@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "simulation/Simulation.hpp"
 #include <iomanip>
@@ -10,7 +10,9 @@ int main(void) {
 
 	sf::RenderWindow window(sf::VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), "Spacecraft Simulator");
 
-	double timestep = (1 / 120.0);
+	constexpr double SIM_FREQ_HZ = 120.0;
+
+	double timestep = (1 / SIM_FREQ_HZ);
 	Simulation sim(timestep);
 
 	const WorldState& state = sim.getState();
@@ -25,7 +27,7 @@ int main(void) {
 		<< ", Vy = " << state.body.velocity.y
 		<< std::endl;
 
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < (5/timestep); i++) {
 		sim.step();
 		const WorldState& state = sim.getState();
 
