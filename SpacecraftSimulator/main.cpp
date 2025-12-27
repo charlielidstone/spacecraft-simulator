@@ -21,10 +21,10 @@ int main(void) {
 
 	sf::RectangleShape marker1(sf::Vector2f(1.0, 20.0));
 	marker1.setFillColor(sf::Color::Red);
-	marker1.setPosition({ sf::Vector2f(static_cast<float>(ORIGIN.x - 50), static_cast<float>(ORIGIN.y)) });
+	marker1.setPosition({ sf::Vector2f(static_cast<float>(ORIGIN.x), static_cast<float>(ORIGIN.y)) });
 	sf::RectangleShape marker2(sf::Vector2f(1.0, 20.0));
 	marker2.setFillColor(sf::Color::Blue);
-	marker2.setPosition({ sf::Vector2f(static_cast<float>(ORIGIN.x + 50), static_cast<float>(ORIGIN.y)) });
+	marker2.setPosition({ sf::Vector2f(static_cast<float>(ORIGIN.x + 305.81039), static_cast<float>(ORIGIN.y)) });
 
 	constexpr auto ROCKET_RADIUS = 5.0F;
 	sf::CircleShape rocket(ROCKET_RADIUS);
