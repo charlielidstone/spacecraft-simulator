@@ -25,6 +25,7 @@ class Application {
 				accumulator += frameTime;
 
 				while (accumulator >= (1 / sim_freq)) {
+					std::cout << "Physics behind real-time by: " << accumulator << " seconds" << std::endl;
 					simulation.step();
 					accumulator -= (1 / sim_freq);
 				}

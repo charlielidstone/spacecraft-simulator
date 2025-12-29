@@ -17,7 +17,7 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 }
 
 void Simulation::simulateGpuDelay() {
-	const int iterations = 300000;
+	const int iterations = 400000;
 	volatile double result = 0.0;
 	
 	for (int i = 0; i < iterations; ++i) {
