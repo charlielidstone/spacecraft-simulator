@@ -6,14 +6,16 @@
 Simulation::Simulation(double timestep) : dt(timestep) {
 	state.time = 0.0;
 	
-	state.body.mass = 10.0;
+	state.body.mass = 100.0;
+	state.body.width = 10.0;
+	state.body.height = 30.0;
 	state.body.position = { 0.0, 0.0 };
-	state.body.velocity = { 30.0, 50.0 };
+	state.body.velocity = { 0.0, -10.0 };
 	state.body.id = 0;
-	state.body.throttle = 1.0;
+	state.body.throttle = 0.0;
 
-	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
-	//forces.push_back(std::make_unique<ThrustForce>(0, 0));
+	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
+	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
 }
 
 void Simulation::simulateGpuDelay() {
@@ -25,9 +27,17 @@ void Simulation::simulateGpuDelay() {
 	}
 }
 
-void Simulation::step() {
+void Simulation::step(InputState& input) {
 	Vector2 netForce{ 0.0, 0.0 };
 	double netTorque = 0.0;
+
+	if (input.shiftPressed || input.WPressed) {
+		state.body.throttle = 1.0;
+	} else if (input.SPressed) {
+		state.body.throttle = -1.0;
+	} else {
+		state.body.throttle = 0.0;
+	}
 
 	for (const auto& force : forces) {
 		netForce += force->computeForce(state.body);

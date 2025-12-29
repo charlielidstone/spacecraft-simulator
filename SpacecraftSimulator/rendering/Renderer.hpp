@@ -14,7 +14,7 @@ class Renderer {
 			: window(sf::VideoMode({ 800, 600 }), "Spacecraft Simulator"), scale(1.0), accumulator(0.0)
 		{}
 
-		void setup() {
+		void setup(const WorldState& state) {
 			marker1.setSize(sf::Vector2f(1.0, 20.0));
 			marker1.setFillColor(sf::Color::Red);
 			marker1.setPosition({ sf::Vector2f(static_cast<float>(origin.x), static_cast<float>(origin.y)) });
@@ -23,12 +23,12 @@ class Renderer {
 			marker2.setFillColor(sf::Color::Blue);
 			marker2.setPosition({ sf::Vector2f(static_cast<float>(origin.x + 305.81039), static_cast<float>(origin.y)) });
 
-			constexpr auto ROCKET_RADIUS = 5.0F;
-			rocket.setRadius(ROCKET_RADIUS);
+			rocket.setSize(sf::Vector2f(state.body.width, state.body.height));
 			rocket.setFillColor(sf::Color::White);
 
 			// set origin of all shapes to center of shape
-			rocket.setOrigin(sf::Vector2f(ROCKET_RADIUS, ROCKET_RADIUS));
+			//rocket.setOrigin(sf::Vector2f(state.body.width / 2, state.body.height / 2));
+			rocket.setOrigin(sf::Vector2f(0, state.body.height - 1));
 			marker1.setOrigin(sf::Vector2f(0.5F, 10.0F));
 			marker2.setOrigin(sf::Vector2f(0.5F, 10.0F));
 
@@ -71,13 +71,10 @@ class Renderer {
 		void generateGrid() {
 			gridLines.clear();
 			
-			// Grid spacing in pixels (1 metre = gridSpacing pixels)
 			const float gridSpacing = static_cast<float>(scale * metersPerGridSquare);
 			
-			// Grid color (dark gray, semi-transparent)
-			const sf::Color gridColor(80, 80, 80, 255);
+			const sf::Color gridColor(10, 10, 10, 255);
 			
-			// Vertical lines
 			for (float x = 0; x < WINDOW_WIDTH; x += gridSpacing) {
 				sf::RectangleShape line(sf::Vector2f(1.0f, static_cast<float>(WINDOW_HEIGHT)));
 				line.setPosition({ x, 0 });
@@ -85,7 +82,6 @@ class Renderer {
 				gridLines.push_back(line);
 			}
 			
-			// Horizontal lines
 			for (float y = 0; y < WINDOW_HEIGHT; y += gridSpacing) {
 				sf::RectangleShape line(sf::Vector2f(static_cast<float>(WINDOW_WIDTH), 1.0f));
 				line.setPosition({ 0, y });
@@ -96,12 +92,12 @@ class Renderer {
 			// Highlight origin lines (brighter)
 			sf::RectangleShape originLineX(sf::Vector2f(static_cast<float>(WINDOW_WIDTH), 1.0f));
 			originLineX.setPosition({ 0, static_cast<float>(origin.y) });
-			originLineX.setFillColor(sf::Color(120, 120, 120, 255));
+			originLineX.setFillColor(sf::Color(40, 40, 40, 255));
 			gridLines.push_back(originLineX);
 			
 			sf::RectangleShape originLineY(sf::Vector2f(1.0f, static_cast<float>(WINDOW_HEIGHT)));
 			originLineY.setPosition({ static_cast<float>(origin.x), 0 });
-			originLineY.setFillColor(sf::Color(120, 120, 120, 255));
+			originLineY.setFillColor(sf::Color(40, 40, 40, 255));
 			gridLines.push_back(originLineY);
 		}
 
@@ -117,7 +113,7 @@ class Renderer {
 		std::vector<sf::RectangleShape> gridLines;
 		
 		// these are hardcoded for now, but we will store them as a list later
-		sf::CircleShape rocket;
+		sf::RectangleShape rocket;
 		sf::RectangleShape marker1;
 		sf::RectangleShape marker2;
 };

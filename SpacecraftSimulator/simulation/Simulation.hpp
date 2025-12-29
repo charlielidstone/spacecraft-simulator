@@ -3,6 +3,7 @@
 
 #include "../state/WorldState.hpp"
 #include "../physics/Force.hpp"
+#include "../application/InputState.hpp"
 #include <vector>
 #include <memory>
 
@@ -10,7 +11,7 @@ class Simulation {
 	public:
 		Simulation(double timestep);
 
-		void step();
+		void step(InputState& input);
 		const WorldState& getState() const;
 	
 	private:

@@ -130,12 +130,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
     <ClCompile Include="Integrator.hpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Simulation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application\Application.hpp" />
+    <ClInclude Include="application\InputState.hpp" />
     <ClInclude Include="math\Vector2.hpp" />
     <ClInclude Include="physics\Force.hpp" />
     <ClInclude Include="rendering\Renderer.hpp" />

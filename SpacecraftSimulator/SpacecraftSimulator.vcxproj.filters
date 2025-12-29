@@ -42,6 +42,9 @@
     <ClCompile Include="Integrator.hpp">
       <Filter>math</Filter>
     </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>application</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector2.hpp">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="application\Application.hpp">
       <Filter>application</Filter>
+    </ClInclude>
+    <ClInclude Include="application\InputState.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
