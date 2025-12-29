@@ -50,7 +50,7 @@ void Simulation::step() {
 	std::cout << "Frame count: " << count++ << "\n";
 	std::cout << "-------------------\n";
 
-	simulateGpuDelay();
+	//simulateGpuDelay();
 }
 
 const WorldState& Simulation::getState() const {
