@@ -31,7 +31,7 @@ void Simulation::step(InputState& input) {
 	Vector2 netForce{ 0.0, 0.0 };
 	double netTorque = 0.0;
 
-	if (input.shiftPressed || input.WPressed) {
+	if (input.shiftPressed || input.WPressed) { // need to change this. simulation should not know about input. application will tell it: "add throttle" instead of "W is pressed"
 		state.body.throttle = 1.0;
 	} else if (input.SPressed) {
 		state.body.throttle = -1.0;
