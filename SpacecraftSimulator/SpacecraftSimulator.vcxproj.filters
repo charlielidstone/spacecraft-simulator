@@ -28,6 +28,9 @@
     <Filter Include="rendering">
       <UniqueIdentifier>{0fd9ef5d-9917-48c0-879b-3f7e0ce7fb59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="application">
+      <UniqueIdentifier>{5af09693-9afe-413d-a603-d06153388839}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="Integrator.hpp">
       <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.hpp">
-      <Filter>rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="state\RigidBody.hpp">
       <Filter>physics</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\Renderer.hpp">
+      <Filter>rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="application\Application.hpp">
+      <Filter>application</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
