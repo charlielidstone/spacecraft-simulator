@@ -17,9 +17,7 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 }
 
 void Simulation::simulateGpuDelay() {
-	// Simulate GPU computational load with actual work
-	// Adjust iterations to match desired performance characteristics
-	const int iterations = 1000000;
+	const int iterations = 300000;
 	volatile double result = 0.0;
 	
 	for (int i = 0; i < iterations; ++i) {
@@ -36,13 +34,11 @@ void Simulation::step() {
 		netTorque += force->computeTorque(state.body);
 	}
 
-	std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";
-	//std::cout << "Position: (" << state.body.position.x << ", " << state.body.position.y << ")\n";
-
 	Vector2 acceleration = netForce / state.body.mass;
 	state.body.velocity += acceleration * dt;
 	state.body.position += state.body.velocity * dt;
 	
+	std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";
 	std::cout << "Mass: " << state.body.mass << "\n";
 	std::cout << "Position: (" << state.body.position.x << ", " << state.body.position.y << ")\n";
 	std::cout << "Velocity: (" << state.body.velocity.x << ", " << state.body.velocity.y << ")\n";
@@ -54,7 +50,7 @@ void Simulation::step() {
 	std::cout << "Frame count: " << count++ << "\n";
 	std::cout << "-------------------\n";
 
-	//simulateGpuDelay();
+	simulateGpuDelay();
 }
 
 const WorldState& Simulation::getState() const {
