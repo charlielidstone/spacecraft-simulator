@@ -15,8 +15,8 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 	state.bodies[0].id = 0;
 	state.bodies[0].throttle = 0.0;
 
-	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
-	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
+	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
+	//forces.push_back(std::make_unique<ThrustForce>(10000, 0));
 }
 
 void Simulation::simulateGpuDelay() {
