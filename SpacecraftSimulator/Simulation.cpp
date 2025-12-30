@@ -14,7 +14,7 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 	state.body.id = 0;
 	state.body.throttle = 0.0;
 
-	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
+	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
 }
 
@@ -22,7 +22,7 @@ void Simulation::simulateGpuDelay() {
 	const int iterations = 400000;
 	volatile double result = 0.0;
 	
-	for (int i = 0; i < iterations; ++i) {
+	for (int i = 0; i < iterations; i++) {
 		result += std::sin(i * 0.001) * std::cos(i * 0.001);
 	}
 }
@@ -39,6 +39,12 @@ void Simulation::step(InputState& input) {
 		state.body.throttle = 0.0;
 	}
 
+	if (input.APressed) {
+		state.body.angle -= (3.1415926535 / 180);
+	} else if (input.DPressed) {
+		state.body.angle += (3.1415926535 / 180);
+	}
+
 	for (const auto& force : forces) {
 		netForce += force->computeForce(state.body);
 		netTorque += force->computeTorque(state.body);
@@ -53,6 +59,7 @@ void Simulation::step(InputState& input) {
 	std::cout << "Position: (" << state.body.position.x << ", " << state.body.position.y << ")\n";
 	std::cout << "Velocity: (" << state.body.velocity.x << ", " << state.body.velocity.y << ")\n";
 	std::cout << "Acceleration: (" << acceleration.x << ", " << acceleration.y << ")\n";
+	std::cout << "Rotation: " << (state.body.angle * 180 / 3.1415926535) << "\n";
 	std::cout << "dt: " << dt << "\n";
 
 	state.time += dt;

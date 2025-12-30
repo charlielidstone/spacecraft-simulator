@@ -41,5 +41,18 @@ InputState& Application::getInput() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
 		input.SPressed = true;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
+		input.APressed = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+		input.DPressed = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
+		input.LeftArrowPressed = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+		input.RightArrowPressed = true;
+	}
+
 	return input;
 }

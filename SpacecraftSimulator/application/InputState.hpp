@@ -5,6 +5,10 @@ struct InputState {
 	bool shiftPressed = false;
 	bool WPressed = false;
 	bool SPressed = false;
+	bool APressed = false;
+	bool DPressed = false;
+	bool LeftArrowPressed = false;
+	bool RightArrowPressed = false;
 };
 
 #endif

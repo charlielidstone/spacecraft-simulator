@@ -27,8 +27,8 @@ class Renderer {
 			rocket.setFillColor(sf::Color::White);
 
 			// set origin of all shapes to center of shape
-			//rocket.setOrigin(sf::Vector2f(state.body.width / 2, state.body.height / 2));
-			rocket.setOrigin(sf::Vector2f(0, state.body.height - 1));
+			rocket.setOrigin(sf::Vector2f(state.body.width / 2, state.body.height / 2));
+			//rocket.setOrigin(sf::Vector2f(0, state.body.height - 1));
 			marker1.setOrigin(sf::Vector2f(0.5F, 10.0F));
 			marker2.setOrigin(sf::Vector2f(0.5F, 10.0F));
 
@@ -41,6 +41,8 @@ class Renderer {
 				static_cast<float>(origin.x + state.body.position.x * scale),
 				static_cast<float>(origin.y - state.body.position.y * scale)
 			});
+
+			rocket.setRotation(sf::radians(state.body.angle - (std::numbers::pi / 2)));
 
 			window.clear();
 			

@@ -19,6 +19,7 @@ struct RigidBody {
 	double width;
 
 	// @brief Angle in radians that the body makes with positive horizontal axis
+	//double angle = 0;
 	double angle = (std::numbers::pi / 2);
 
 	// @brief Value between 0 and 1
