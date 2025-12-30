@@ -5,14 +5,15 @@
 
 Simulation::Simulation(double timestep) : dt(timestep) {
 	state.time = 0.0;
-	
-	state.body.mass = 100.0;
-	state.body.width = 10.0;
-	state.body.height = 30.0;
-	state.body.position = { 0.0, 0.0 };
-	state.body.velocity = { 0.0, -10.0 };
-	state.body.id = 0;
-	state.body.throttle = 0.0;
+
+	state.bodies.resize(1);
+	state.bodies[0].mass = 100.0;
+	state.bodies[0].width = 10.0;
+	state.bodies[0].height = 30.0;
+	state.bodies[0].position = { 0.0, 0.0 };
+	state.bodies[0].velocity = { 0.0, -10.0 };
+	state.bodies[0].id = 0;
+	state.bodies[0].throttle = 0.0;
 
 	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
@@ -31,35 +32,35 @@ void Simulation::step(InputState& input) {
 	Vector2 netForce{ 0.0, 0.0 };
 	double netTorque = 0.0;
 
-	if (input.shiftPressed || input.WPressed) { // need to change this. simulation should not know about input. application will tell it: "add throttle" instead of "W is pressed"
-		state.body.throttle = 1.0;
+	if (input.shiftPressed || input.WPressed) {
+		state.bodies[0].throttle = 1.0;
 	} else if (input.SPressed) {
-		state.body.throttle = -1.0;
+		state.bodies[0].throttle = -1.0;
 	} else {
-		state.body.throttle = 0.0;
+		state.bodies[0].throttle = 0.0;
 	}
 
 	if (input.APressed) {
-		state.body.angle -= (3.1415926535 / 180);
+		state.bodies[0].angle -= (3.1415926535 / 180);
 	} else if (input.DPressed) {
-		state.body.angle += (3.1415926535 / 180);
+		state.bodies[0].angle += (3.1415926535 / 180);
 	}
 
 	for (const auto& force : forces) {
-		netForce += force->computeForce(state.body);
-		netTorque += force->computeTorque(state.body);
+		netForce += force->computeForce(state.bodies[0]);
+		netTorque += force->computeTorque(state.bodies[0]);
 	}
 
-	Vector2 acceleration = netForce / state.body.mass;
-	state.body.velocity += acceleration * dt;
-	state.body.position += state.body.velocity * dt;
+	Vector2 acceleration = netForce / state.bodies[0].mass;
+	state.bodies[0].velocity += acceleration * dt;
+	state.bodies[0].position += state.bodies[0].velocity * dt;
 	
 	std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";
-	std::cout << "Mass: " << state.body.mass << "\n";
-	std::cout << "Position: (" << state.body.position.x << ", " << state.body.position.y << ")\n";
-	std::cout << "Velocity: (" << state.body.velocity.x << ", " << state.body.velocity.y << ")\n";
+	std::cout << "Mass: " << state.bodies[0].mass << "\n";
+	std::cout << "Position: (" << state.bodies[0].position.x << ", " << state.bodies[0].position.y << ")\n";
+	std::cout << "Velocity: (" << state.bodies[0].velocity.x << ", " << state.bodies[0].velocity.y << ")\n";
 	std::cout << "Acceleration: (" << acceleration.x << ", " << acceleration.y << ")\n";
-	std::cout << "Rotation: " << (state.body.angle * 180 / 3.1415926535) << "\n";
+	std::cout << "Rotation: " << (state.bodies[0].angle * 180 / 3.1415926535) << "\n";
 	std::cout << "dt: " << dt << "\n";
 
 	state.time += dt;

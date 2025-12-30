@@ -23,37 +23,35 @@ class Renderer {
 			marker2.setFillColor(sf::Color::Blue);
 			marker2.setPosition({ sf::Vector2f(static_cast<float>(origin.x + 305.81039), static_cast<float>(origin.y)) });
 
-			rocket.setSize(sf::Vector2f(state.body.width, state.body.height));
-			rocket.setFillColor(sf::Color::White);
-
-			// set origin of all shapes to center of shape
-			rocket.setOrigin(sf::Vector2f(state.body.width / 2, state.body.height / 2));
-			//rocket.setOrigin(sf::Vector2f(0, state.body.height - 1));
 			marker1.setOrigin(sf::Vector2f(0.5F, 10.0F));
 			marker2.setOrigin(sf::Vector2f(0.5F, 10.0F));
 
-			// Generate grid lines
+			for (const auto& body : state.bodies) {
+				objects.push_back(sf::RectangleShape());
+				updateObject(objects.back(), body);
+			}
+
 			generateGrid();
 		}
 
 		void render(const WorldState& state) {
-			rocket.setPosition({
-				static_cast<float>(origin.x + state.body.position.x * scale),
-				static_cast<float>(origin.y - state.body.position.y * scale)
-			});
-
-			rocket.setRotation(sf::radians(state.body.angle - (std::numbers::pi / 2)));
+			for (int i = 0; i < state.bodies.size(); i++) {
+				updateObject(objects[i], state.bodies[i]);
+			}
 
 			window.clear();
 			
-			// Draw grid first (background)
 			for (const auto& line : gridLines) {
 				window.draw(line);
 			}
-			
-			window.draw(rocket);
+
 			window.draw(marker1);
 			window.draw(marker2);
+
+			for (const auto& object : objects) {
+				window.draw(object);
+			}
+			
 			window.display();
 		}
 
@@ -103,6 +101,38 @@ class Renderer {
 			gridLines.push_back(originLineY);
 		}
 
+		/**
+		 * @brief Updates a single object based on its simulation body
+		 * @param state The current world state
+		 * @param index The index of the object/body to update
+		 */
+		void updateObject(WorldState& state, size_t index) {
+			objects[index].setPosition({
+				static_cast<float>(origin.x + state.bodies[index].position.x * scale),
+				static_cast<float>(origin.y - state.bodies[index].position.y * scale)
+			});
+			objects[index].setRotation(sf::radians(state.bodies[index].angle - (std::numbers::pi / 2)));
+			objects[index].setOrigin(sf::Vector2f(state.bodies[index].width / 2, state.bodies[index].height / 2));
+			objects[index].setSize(sf::Vector2f(state.bodies[index].width, state.bodies[index].height));
+			objects[index].setFillColor(sf::Color::White);
+		}
+
+		/**
+		 * @brief Updates a single object based on its simulation body
+		 * @param object the renderable object to update
+		 * @param body the simulation body to base the update on
+		 */
+		void updateObject(sf::RectangleShape& object, const RigidBody& body) {
+			object.setPosition({
+				static_cast<float>(origin.x + body.position.x * scale),
+				static_cast<float>(origin.y - body.position.y * scale)
+			});
+			object.setRotation(sf::radians(body.angle - (std::numbers::pi / 2)));
+			object.setOrigin(sf::Vector2f(body.width / 2, body.height / 2));
+			object.setSize(sf::Vector2f(body.width, body.height));
+			object.setFillColor(sf::Color::White);
+		}
+
 		// @brief At scale = 1, 1 unit in simulation space = 1 SFML unit
 		double scale;
 		const double metersPerGridSquare = 10.0; // Each grid square = 1 metre
@@ -118,6 +148,8 @@ class Renderer {
 		sf::RectangleShape rocket;
 		sf::RectangleShape marker1;
 		sf::RectangleShape marker2;
+
+		std::vector<sf::RectangleShape> objects;
 };
 
 #endif

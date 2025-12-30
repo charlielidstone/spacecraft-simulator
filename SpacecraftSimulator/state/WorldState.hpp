@@ -6,8 +6,7 @@
 
 struct WorldState {
 	double time;
-	RigidBody body;
-	//std::vector<RigidBody> bodies;
+	std::vector<RigidBody> bodies;
 };
 
 #endif
