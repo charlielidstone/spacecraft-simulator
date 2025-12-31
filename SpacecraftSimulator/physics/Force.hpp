@@ -33,7 +33,7 @@ class GravityForce : public Force {
 
 class ThrustForce : public Force {
 	public:
-		explicit ThrustForce(double maxThrust, BodyID targetID) : maxThrust(maxThrust), targetID(targetID) {}
+		explicit ThrustForce(double maxThrust, ObjectID targetID) : maxThrust(maxThrust), targetID(targetID) {}
 
 		Vector2 computeForce(const RigidBody& body) const override {
 			if (targetID != body.id) {
@@ -54,7 +54,7 @@ class ThrustForce : public Force {
 		}
 
 	private:
-		BodyID targetID;
+		ObjectID targetID;
 		// @brief Max thrust measured in Newtons
 		double maxThrust = 0.0;
 };

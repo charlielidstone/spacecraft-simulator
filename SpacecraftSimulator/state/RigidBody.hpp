@@ -4,19 +4,21 @@
 #include <cstddef>
 #include "../math/Vector2.hpp"
 #include <numbers>
+#include <string>
 
-using BodyID = std::size_t;
+using ObjectID = std::size_t;
 
 struct RigidBody {
-	BodyID id;
+	ObjectID id;
+	std::string name;	
+
+	// @brief Mass of body in 
+	double mass;
+	double width;
+	double height;
 
 	Vector2 position;
 	Vector2 velocity;
-	
-	// @brief Mass of body in 
-	double mass;
-	double height;
-	double width;
 
 	// @brief Angle in radians that the body makes with positive horizontal axis
 	//double angle = 0;

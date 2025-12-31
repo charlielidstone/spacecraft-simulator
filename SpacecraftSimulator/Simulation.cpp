@@ -4,16 +4,22 @@
 #include <cmath>
 
 Simulation::Simulation(double timestep) : dt(timestep) {
+	ObjectID nextID = 0;
+
 	state.time = 0.0;
 
-	state.bodies.resize(1);
-	state.bodies[0].mass = 100.0;
-	state.bodies[0].width = 10.0;
-	state.bodies[0].height = 30.0;
-	state.bodies[0].position = { 0.0, 0.0 };
-	state.bodies[0].velocity = { 0.0, -10.0 };
-	state.bodies[0].id = 0;
-	state.bodies[0].throttle = 0.0;
+	RigidBody rocket = {
+		.id = 0,
+		.name = "rocket",
+		.mass = 100.0,
+		.width = 10.0,
+		.height = 30.0,
+		.position = { 10.0, 50.0 },
+		.velocity = { 0.0, -40.0 },
+		.throttle = 0.0
+	};
+
+	state.bodies.emplace(nextID++, rocket);
 
 	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 	//forces.push_back(std::make_unique<ThrustForce>(10000, 0));

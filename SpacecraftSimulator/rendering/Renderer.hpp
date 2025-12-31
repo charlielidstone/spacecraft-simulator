@@ -3,6 +3,8 @@
 
 #include "../math/Vector2.hpp"
 #include "../state/WorldState.hpp"
+#include "../rendering/Drawable.hpp"
+#include <unordered_map>
 #include <SFML/Graphics.hpp>
 #include <vector>
 
@@ -26,17 +28,29 @@ class Renderer {
 			marker1.setOrigin(sf::Vector2f(0.5F, 10.0F));
 			marker2.setOrigin(sf::Vector2f(0.5F, 10.0F));
 
-			for (const auto& body : state.bodies) {
-				objects.push_back(sf::RectangleShape());
-				updateObject(objects.back(), body);
+			drawables.clear();
+			int i = 0;
+			for (auto& [key, body] : state.bodies) {
+				drawables.emplace(body.id, Drawable(body.id, sf::RectangleShape{}));
+				if (drawables.find(body.id) == drawables.end()) {
+					std::cout << "Error creating drawable for body ID " << body.id << std::endl;
+					continue;
+				}
+				drawables.find(body.id)->second.object.setSize(sf::Vector2f(body.width, body.height));
+				updateObject(drawables.find(body.id)->second, body);
+				i++;
 			}
 
 			generateGrid();
 		}
 
 		void render(const WorldState& state) {
-			for (int i = 0; i < state.bodies.size(); i++) {
-				updateObject(objects[i], state.bodies[i]);
+			for (const auto& [key, body] : state.bodies) {
+				auto it = drawables.find(body.id);
+				if (it != drawables.end()) {
+					updateObject(it->second, body);
+					std::cout << "Updated drawable for body ID " << body.id << std::endl;
+				}
 			}
 
 			window.clear();
@@ -48,8 +62,8 @@ class Renderer {
 			window.draw(marker1);
 			window.draw(marker2);
 
-			for (const auto& object : objects) {
-				window.draw(object);
+			for (const auto& [id, drawable] : drawables) {
+				window.draw(drawable.object);
 			}
 			
 			window.display();
@@ -103,34 +117,18 @@ class Renderer {
 
 		/**
 		 * @brief Updates a single object based on its simulation body
-		 * @param state The current world state
-		 * @param index The index of the object/body to update
-		 */
-		void updateObject(WorldState& state, size_t index) {
-			objects[index].setPosition({
-				static_cast<float>(origin.x + state.bodies[index].position.x * scale),
-				static_cast<float>(origin.y - state.bodies[index].position.y * scale)
-			});
-			objects[index].setRotation(sf::radians(state.bodies[index].angle - (std::numbers::pi / 2)));
-			objects[index].setOrigin(sf::Vector2f(state.bodies[index].width / 2, state.bodies[index].height / 2));
-			objects[index].setSize(sf::Vector2f(state.bodies[index].width, state.bodies[index].height));
-			objects[index].setFillColor(sf::Color::White);
-		}
-
-		/**
-		 * @brief Updates a single object based on its simulation body
 		 * @param object the renderable object to update
 		 * @param body the simulation body to base the update on
 		 */
-		void updateObject(sf::RectangleShape& object, const RigidBody& body) {
-			object.setPosition({
+		void updateObject(Drawable drawable, const RigidBody& body) {
+			drawable.object.setPosition({
 				static_cast<float>(origin.x + body.position.x * scale),
 				static_cast<float>(origin.y - body.position.y * scale)
 			});
-			object.setRotation(sf::radians(body.angle - (std::numbers::pi / 2)));
-			object.setOrigin(sf::Vector2f(body.width / 2, body.height / 2));
-			object.setSize(sf::Vector2f(body.width, body.height));
-			object.setFillColor(sf::Color::White);
+			drawable.object.setRotation(sf::radians(body.angle - (std::numbers::pi / 2)));
+			drawable.object.setOrigin(sf::Vector2f(body.width / 2, body.height / 2));
+			drawable.object.setSize(sf::Vector2f(body.width, body.height));
+			drawable.object.setFillColor(sf::Color::White);
 		}
 
 		// @brief At scale = 1, 1 unit in simulation space = 1 SFML unit
@@ -149,7 +147,7 @@ class Renderer {
 		sf::RectangleShape marker1;
 		sf::RectangleShape marker2;
 
-		std::vector<sf::RectangleShape> objects;
+		std::unordered_map<ObjectID, Drawable> drawables;
 };
 
 #endif

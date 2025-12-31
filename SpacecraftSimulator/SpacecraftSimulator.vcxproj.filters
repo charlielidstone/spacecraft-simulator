@@ -71,5 +71,11 @@
     <ClInclude Include="application\InputState.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="state\ReferenceMark.hpp">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="rendering\Drawable.hpp">
+      <Filter>rendering</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

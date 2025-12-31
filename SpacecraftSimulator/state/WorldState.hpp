@@ -3,12 +3,12 @@
 
 #include "../state/RigidBody.hpp"
 #include "../state/ReferenceMark.hpp"
-#include <vector>
+#include <unordered_map>
 
 struct WorldState {
 	double time;
-	std::vector<RigidBody> bodies;
-	std::vector<ReferenceMark> referenceMarks;
+	std::unordered_map<ObjectID, RigidBody> bodies;
+	std::unordered_map<ObjectID, ReferenceMark> referenceMarks;
 };
 
 #endif
