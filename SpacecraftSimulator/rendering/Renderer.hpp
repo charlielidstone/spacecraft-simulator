@@ -49,7 +49,6 @@ class Renderer {
 				auto it = drawables.find(body.id);
 				if (it != drawables.end()) {
 					updateObject(it->second, body);
-					std::cout << "Updated drawable for body ID " << body.id << std::endl;
 				}
 			}
 
@@ -120,7 +119,7 @@ class Renderer {
 		 * @param object the renderable object to update
 		 * @param body the simulation body to base the update on
 		 */
-		void updateObject(Drawable drawable, const RigidBody& body) {
+		void updateObject(Drawable& drawable, const RigidBody& body) {
 			drawable.object.setPosition({
 				static_cast<float>(origin.x + body.position.x * scale),
 				static_cast<float>(origin.y - body.position.y * scale)
