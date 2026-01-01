@@ -28,7 +28,7 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.width = 30.0,
 		.height = 90.0,
 		.position = { -10.0, -30.0 },
-		.velocity = { 0.0, 40.0 },
+		.velocity = { 0.0, 70.0 },
 		.throttle = 0.0
 	};
 
@@ -41,13 +41,13 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.width = 40.0,
 		.height = 20.0,
 		.position = { -40.0, 30.0 },
-		.velocity = { 30.0, 0.0 },
+		.velocity = { 10.0, 0.0 },
 		.throttle = 0.0
 	};
 
 	state.bodies.emplace(rocket3.id, rocket3);
 
-	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
+	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
 }
 
@@ -67,10 +67,17 @@ void Simulation::step(InputState& input) {
 		Vector2 netForce{ 0.0, 0.0 };
 		double netTorque = 0.0;
 
+		for (const auto& force : forces) {
+			netForce += force->computeForce(body);
+			netTorque += force->computeTorque(body);
+		}
+
 		Vector2 acceleration = netForce / body.mass;
 		body.velocity += acceleration * dt;
 		body.position += body.velocity * dt;
-	
+
+		/*netTorque = dL / dt
+		dL */
 
 		std::cout << "Object: " << body.name << "\n";
 		std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";
@@ -87,7 +94,7 @@ void Simulation::step(InputState& input) {
 	}
 
 
-	simulateGpuDelay();
+	//simulateGpuDelay();
 }
 
 const WorldState& Simulation::getState() const {
