@@ -72,12 +72,14 @@ class Renderer {
 			return frameClock.restart().asSeconds();
 		}
 
-		void handleWindowEvents() {
+		int handleWindowEvents() {
 			while (const std::optional event = window.pollEvent()) {
 				if (event->is<sf::Event::Closed>()) {
 					window.close();
+					return 1;
 				}
 			}
+			return 0;
 		}
 
 	private:

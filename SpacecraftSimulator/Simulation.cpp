@@ -87,7 +87,7 @@ void Simulation::step(InputState& input) {
 	}
 
 
-	//simulateGpuDelay();
+	simulateGpuDelay();
 }
 
 const WorldState& Simulation::getState() const {

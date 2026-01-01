@@ -13,8 +13,6 @@ void Application::run() {
 	double frameTime = 0.0;
 
 	while (renderer.window.isOpen()) {
-		renderer.handleWindowEvents();
-
 		frameTime = renderer.consumeFrameTime();
 		accumulator += frameTime;
 
@@ -23,6 +21,8 @@ void Application::run() {
 			InputState& input = getInput();
 			simulation.step(input);
 			accumulator -= (1 / sim_freq);
+
+			if (renderer.handleWindowEvents()) break;
 		}
 
 		const WorldState& state = simulation.getState();
