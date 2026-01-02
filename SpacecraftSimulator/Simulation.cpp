@@ -1,4 +1,4 @@
-#include "simulation/Simulation.hpp"
+﻿#include "simulation/Simulation.hpp"
 #include "math/Vector2.hpp"
 #include <iostream>
 #include <cmath>
@@ -11,11 +11,11 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 	RigidBody rocket = {
 		.id = nextID++,
 		.name = "rocket",
-		.mass = 100.0,
 		.width = 10.0,
 		.height = 30.0,
-		.position = { 10.0, 50.0 },
+		.mass = 100.0,
 		.velocity = { 0.0, -40.0 },
+		.position = { 10.0, 50.0 },
 		.throttle = 0.0
 	};
 
@@ -24,11 +24,11 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 	RigidBody otherRocket = {
 		.id = nextID++,
 		.name = "otherRocket",
-		.mass = 100.0,
 		.width = 30.0,
 		.height = 90.0,
-		.position = { -10.0, -30.0 },
+		.mass = 100.0,
 		.velocity = { 0.0, 70.0 },
+		.position = { -10.0, -30.0 },
 		.throttle = 0.0
 	};
 
@@ -76,8 +76,9 @@ void Simulation::step(InputState& input) {
 		body.velocity += acceleration * dt;
 		body.position += body.velocity * dt;
 
-		/*netTorque = dL / dt
-		dL */
+		double angularAcceleration = netTorque / body.momOfInertia;
+		body.angularFrequency += angularAcceleration * dt;
+		body.angle += body.angularFrequency * dt;
 
 		std::cout << "Object: " << body.name << "\n";
 		std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";

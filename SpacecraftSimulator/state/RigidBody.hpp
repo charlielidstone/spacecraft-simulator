@@ -13,12 +13,15 @@ struct RigidBody {
 	std::string name;	
 
 	// @brief Mass of body in 
-	double mass;
 	double width;
 	double height;
 
-	Vector2 position;
+	double mass;
 	Vector2 velocity;
+	Vector2 position;
+
+	double momOfInertia;
+	double angularFrequency;
 
 	// @brief Angle in radians that the body makes with positive horizontal axis
 	//double angle = 0;
