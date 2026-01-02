@@ -34,20 +34,33 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 
 	state.bodies.emplace(otherRocket.id, otherRocket);
 
-	RigidBody rocket3 = {
+	//RigidBody rocket3 = {
+	//	.id = nextID++,
+	//	.name = "rocket3",
+	//	.width = 40.0,
+	//	.height = 20.0,
+	//	.mass = 100.0,
+	//	.velocity = { 10.0, 0.0 },
+	//	.position = { -40.0, 30.0 },
+	//	.throttle = 0.0
+	//};
+
+	//state.bodies.emplace(rocket3.id, rocket3);
+
+	RigidBody starship = {
 		.id = nextID++,
-		.name = "rocket3",
-		.mass = 100.0,
-		.width = 40.0,
-		.height = 20.0,
-		.position = { -40.0, 30.0 },
-		.velocity = { 10.0, 0.0 },
+		.name = "starship",
+		.width = 9.0,
+		.height = 123.0,
+		.mass = 5'000'000.0,
+		.velocity = { 0.0, 0.0 },
+		.position = { 0.0, 0.0 },
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(rocket3.id, rocket3);
+	state.bodies.emplace(starship.id, starship);
 
-	//forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
+	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
 }
 
@@ -83,6 +96,7 @@ void Simulation::step(InputState& input) {
 		std::cout << "Object: " << body.name << "\n";
 		std::cout << "Net Force: (" << netForce.x << ", " << netForce.y << ")\n";
 		std::cout << "Mass: " << body.mass << "\n";
+		std::cout << "Moment of Inertia: " << body.momOfInertia << "\n";
 		std::cout << "Position: (" << body.position.x << ", " << body.position.y << ")\n";
 		std::cout << "Velocity: (" << body.velocity.x << ", " << body.velocity.y << ")\n";
 		std::cout << "Acceleration: (" << acceleration.x << ", " << acceleration.y << ")\n";
