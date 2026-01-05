@@ -13,6 +13,8 @@ class Simulation {
 
 		void step(InputState& input);
 		const WorldState& getState() const;
+		int getFrameCount() const { return count; }
+		void incrementFrameCount() { count++; }
 	
 	private:
 		// @brief Delta time, used for Euler integration

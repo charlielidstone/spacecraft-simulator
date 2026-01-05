@@ -1,5 +1,7 @@
-#include "application/Application.hpp"
+﻿#include "application/Application.hpp"
 #include <SFML/Graphics.hpp>
+#include <chrono>
+#include <iostream>
 
 Application::Application() : sim_freq(120.0), simulation(1.0 / sim_freq), renderer() {}
 
@@ -13,20 +15,47 @@ void Application::run() {
 	double frameTime = 0.0;
 
 	while (renderer.window.isOpen()) {
+		auto frameStart = std::chrono::high_resolution_clock::now();
+		
 		frameTime = renderer.consumeFrameTime();
 		accumulator += frameTime;
 
 		while (accumulator >= (1 / sim_freq)) {
-			std::cout << "Physics behind real-time by: " << accumulator << " seconds" << std::endl;
-			InputState& input = getInput();
-			simulation.step(input);
+			std::cout << "-------------------\n";
+			std::cout << "Frame time: " << frameTime << " seconds\n";
+			std::cout << "FPS: " << 1.0 / frameTime << "\n";
+			std::cout << "Frame count: " << simulation.getFrameCount() << "\n";
+			if (accumulator > 0.009) {
+				std::cout << "Physics behind real-time by: " << accumulator << " seconds" << std::endl;
+				
+				// Time each operation
+				auto t1 = std::chrono::high_resolution_clock::now();
+				InputState& input = getInput();
+				auto t2 = std::chrono::high_resolution_clock::now();
+				simulation.step(input);
+				auto t3 = std::chrono::high_resolution_clock::now();
+				
+				std::cout << "  Input: " << std::chrono::duration<double, std::milli>(t2 - t1).count() << "ms\n";
+				std::cout << "  Simulation: " << std::chrono::duration<double, std::milli>(t3 - t2).count() << "ms\n";
+			} else {
+				InputState& input = getInput();
+				simulation.step(input);
+			}
 			accumulator -= (1 / sim_freq);
+
+			simulation.incrementFrameCount();
 
 			if (renderer.handleWindowEvents()) break;
 		}
 
+		auto renderStart = std::chrono::high_resolution_clock::now();
 		const WorldState& state = simulation.getState();
 		renderer.render(state);
+		auto renderEnd = std::chrono::high_resolution_clock::now();
+		
+		if (accumulator > 0.009) {
+			std::cout << "  Render: " << std::chrono::duration<double, std::milli>(renderEnd - renderStart).count() << "ms\n";
+		}
 	}
 }
 

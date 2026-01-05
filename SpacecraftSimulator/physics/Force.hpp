@@ -41,11 +41,7 @@ class ThrustForce : public Force {
 			}
 
 			double thrust = maxThrust * body.throttle;
-
-			std::cout << "Throttle: " << body.throttle << std::endl;
-
 			Vector2 forceUnitVector({ std::cos(body.angle), std::sin(body.angle)});
-
 			return forceUnitVector * thrust;
 		}
 

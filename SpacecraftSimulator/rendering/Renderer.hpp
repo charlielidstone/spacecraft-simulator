@@ -104,7 +104,6 @@ class Renderer {
 				gridLines.push_back(line);
 			}
 			
-			// Highlight origin lines (brighter)
 			sf::RectangleShape originLineX(sf::Vector2f(static_cast<float>(WINDOW_WIDTH), 1.0f));
 			originLineX.setPosition({ 0, static_cast<float>(origin.y) });
 			originLineX.setFillColor(sf::Color(40, 40, 40, 255));
