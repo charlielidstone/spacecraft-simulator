@@ -24,6 +24,7 @@ void Application::run() {
 			std::cout << "-------------------\n";
 			std::cout << "Frame time: " << frameTime << " seconds\n";
 			std::cout << "FPS: " << 1.0 / frameTime << "\n";
+			// Frame count is a somewhat misleading, it is the number of actual frames, while FPS is the number of possible frames
 			std::cout << "Frame count: " << simulation.getFrameCount() << "\n";
 			if (accumulator > 0.009) {
 				std::cout << "Physics behind real-time by: " << accumulator << " seconds" << std::endl;
