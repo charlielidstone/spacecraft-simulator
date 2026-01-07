@@ -13,6 +13,8 @@ struct RigidBody {
 	ObjectID id;
 	std::string name;	
 
+	bool isActive = false;
+
 	// @brief Mass of body in 
 	double width = 0.0;
 	double height = 0.0;

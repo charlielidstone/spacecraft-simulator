@@ -529,7 +529,6 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 
 	state.bodies.emplace(surveyor.id, surveyor);
 
-
 	std::cout << "Number of objects: " << nextID << std::endl;
 
 	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));

@@ -24,6 +24,8 @@ class Simulation {
 		int count = 0;
 
 		void simulateGpuDelay();
+
+		//void setActiveBody
 };
 
 #endif
