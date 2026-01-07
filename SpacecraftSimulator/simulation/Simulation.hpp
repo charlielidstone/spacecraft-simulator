@@ -22,10 +22,11 @@ class Simulation {
 		WorldState state;
 		std::vector<std::unique_ptr<Force>> forces;
 		int count = 0;
+		RigidBody* activeBody;
 
 		void simulateGpuDelay();
 
-		//void setActiveBody
+		void setActiveBody(RigidBody* body);
 };
 
 #endif

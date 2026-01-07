@@ -584,3 +584,13 @@ void Simulation::step(InputState& input) {
 const WorldState& Simulation::getState() const {
 	return state;
 }
+
+void Simulation::setActiveBody(RigidBody* body) {
+	if (activeBody) activeBody->isActive = false;
+	activeBody = body;
+	if (activeBody) {
+		activeBody->isActive = true;
+	} else {
+		std::cout << "No active body set" << std::endl;
+	}
+}
