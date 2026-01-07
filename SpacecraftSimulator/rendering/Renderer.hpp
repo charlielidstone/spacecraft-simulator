@@ -143,7 +143,6 @@ class Renderer {
 		std::vector<sf::RectangleShape> gridLines;
 		
 		// these are hardcoded for now, but we will store them as a list later
-		sf::RectangleShape rocket;
 		sf::RectangleShape marker1;
 		sf::RectangleShape marker2;
 
