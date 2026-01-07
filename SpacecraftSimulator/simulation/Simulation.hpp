@@ -10,6 +10,7 @@
 class Simulation {
 	public:
 		Simulation(double timestep);
+		~Simulation();
 
 		void step(InputState& input);
 		const WorldState& getState() const;

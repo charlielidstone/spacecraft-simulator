@@ -9,6 +9,11 @@
 
 using ObjectID = std::size_t;
 
+enum Colour {
+	White,
+	Red
+};
+
 struct RigidBody {
 	ObjectID id;
 	std::string name;	
@@ -33,6 +38,8 @@ struct RigidBody {
 
 	// @brief Value between 0 and 1
 	double throttle = 0.0;
+
+	Colour colour = White;
 };
 
 #endif

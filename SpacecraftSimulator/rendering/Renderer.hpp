@@ -13,7 +13,7 @@ class Renderer {
 		sf::RenderWindow window;
 
 		Renderer()
-			: window(sf::VideoMode({ 800, 600 }), "Spacecraft Simulator"), scale(1.0), accumulator(0.0)
+			: window(sf::VideoMode({ 1200, 1000 }), "Spacecraft Simulator"), scale(10.0), accumulator(0.0)
 		{}
 
 		void setup(const WorldState& state) {
@@ -31,13 +31,13 @@ class Renderer {
 			drawables.clear();
 			int i = 0;
 			for (auto& [key, body] : state.bodies) {
-				drawables.emplace(body.id, Drawable(body.id, sf::RectangleShape{}));
-				if (drawables.find(body.id) == drawables.end()) {
-					std::cout << "Error creating drawable for body ID " << body.id << std::endl;
+				drawables.emplace(body->id, Drawable(body->id, sf::RectangleShape{}));
+				if (drawables.find(body->id) == drawables.end()) {
+					std::cout << "Error creating drawable for body ID " << body->id << std::endl;
 					continue;
 				}
-				drawables.find(body.id)->second.object.setSize(sf::Vector2f(body.width, body.height));
-				updateObject(drawables.find(body.id)->second, body);
+				drawables.find(body->id)->second.object.setSize(sf::Vector2f(body->width, body->height));
+				updateObject(drawables.find(body->id)->second, *body);
 				i++;
 			}
 
@@ -46,9 +46,9 @@ class Renderer {
 
 		void render(const WorldState& state) {
 			for (const auto& [key, body] : state.bodies) {
-				auto it = drawables.find(body.id);
+				auto it = drawables.find(body->id);
 				if (it != drawables.end()) {
-					updateObject(it->second, body);
+					updateObject(it->second, *body);
 				}
 			}
 
@@ -80,6 +80,14 @@ class Renderer {
 				}
 			}
 			return 0;
+		}
+
+		double getScale() {
+			return scale;
+		}
+
+		void setScale(double newScale) {
+			scale = newScale;
 		}
 
 	private:
@@ -127,15 +135,20 @@ class Renderer {
 			});
 			drawable.object.setRotation(sf::radians(body.angle - (std::numbers::pi / 2)));
 			drawable.object.setOrigin(sf::Vector2f(body.width / 2, body.height / 2));
-			drawable.object.setSize(sf::Vector2f(body.width, body.height));
-			drawable.object.setFillColor(sf::Color::White);
+			drawable.object.setSize(sf::Vector2f(body.width * scale, body.height * scale));
+
+			if (body.colour == Red) {
+				drawable.object.setFillColor(sf::Color::Red);
+			} else {
+				drawable.object.setFillColor(sf::Color::White);
+			}
 		}
 
 		// @brief At scale = 1, 1 unit in simulation space = 1 SFML unit
 		double scale;
 		const double metersPerGridSquare = 10.0; // Each grid square = 1 metre
-		const int WINDOW_WIDTH = 800;
-		const int WINDOW_HEIGHT = 600;
+		const int WINDOW_WIDTH = 1200;
+		const int WINDOW_HEIGHT = 1000;
 		const Vector2 origin = { WINDOW_WIDTH / 2.0, WINDOW_HEIGHT / 2.0 };
 		sf::Clock frameClock;
 		double accumulator;

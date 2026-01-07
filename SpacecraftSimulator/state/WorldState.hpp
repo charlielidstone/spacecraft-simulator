@@ -7,7 +7,7 @@
 
 struct WorldState {
 	double time;
-	std::unordered_map<ObjectID, RigidBody> bodies;
+	std::unordered_map<ObjectID, RigidBody*> bodies;
 	std::unordered_map<ObjectID, ReferenceMark> referenceMarks;
 };
 

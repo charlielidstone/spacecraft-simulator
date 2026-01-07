@@ -9,7 +9,7 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 
 	state.time = 0.0;
 
-	RigidBody rocket = {
+	RigidBody* rocket = new RigidBody{
 		.id = nextID++,
 		.name = "rocket",
 		.width = 10.0,
@@ -20,9 +20,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(rocket.id, rocket);
+	state.bodies.emplace(rocket->id, rocket);
 
-	RigidBody otherRocket = {
+	RigidBody* otherRocket = new RigidBody{
 		.id = nextID++,
 		.name = "otherRocket",
 		.width = 30.0,
@@ -33,9 +33,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(otherRocket.id, otherRocket);
+	state.bodies.emplace(otherRocket->id, otherRocket);
 
-	RigidBody rocket3 = {
+	RigidBody* rocket3 = new RigidBody{
 		.id = nextID++,
 		.name = "rocket3",
 		.width = 40.0,
@@ -46,9 +46,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(rocket3.id, rocket3);
+	state.bodies.emplace(rocket3->id, rocket3);
 
-	RigidBody starship = {
+	RigidBody* starship = new RigidBody{
 		.id = nextID++,
 		.name = "starship",
 		.width = 9.0,
@@ -59,9 +59,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(starship.id, starship);
+	state.bodies.emplace(starship->id, starship);
 
-	RigidBody falcon9 = {
+	RigidBody* falcon9 = new RigidBody{
 		.id = nextID++,
 		.name = "falcon9",
 		.width = 3.7,
@@ -72,9 +72,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(falcon9.id, falcon9);
+	state.bodies.emplace(falcon9->id, falcon9);
 
-	RigidBody satellite = {
+	RigidBody* satellite = new RigidBody{
 		.id = nextID++,
 		.name = "satellite",
 		.width = 2.0,
@@ -85,9 +85,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(satellite.id, satellite);
+	state.bodies.emplace(satellite->id, satellite);
 
-	RigidBody capsule = {
+	RigidBody* capsule = new RigidBody{
 		.id = nextID++,
 		.name = "capsule",
 		.width = 4.0,
@@ -98,9 +98,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(capsule.id, capsule);
+	state.bodies.emplace(capsule->id, capsule);
 
-	RigidBody debris1 = {
+	RigidBody* debris1 = new RigidBody{
 		.id = nextID++,
 		.name = "debris1",
 		.width = 1.5,
@@ -111,9 +111,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(debris1.id, debris1);
+	state.bodies.emplace(debris1->id, debris1);
 
-	RigidBody probe = {
+	RigidBody* probe = new RigidBody{
 		.id = nextID++,
 		.name = "probe",
 		.width = 1.0,
@@ -124,9 +124,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(probe.id, probe);
+	state.bodies.emplace(probe->id, probe);
 
-	RigidBody shuttle = {
+	RigidBody* shuttle = new RigidBody{
 		.id = nextID++,
 		.name = "shuttle",
 		.width = 8.7,
@@ -137,9 +137,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(shuttle.id, shuttle);
+	state.bodies.emplace(shuttle->id, shuttle);
 
-	RigidBody booster = {
+	RigidBody* booster = new RigidBody{
 		.id = nextID++,
 		.name = "booster",
 		.width = 2.5,
@@ -150,9 +150,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(booster.id, booster);
+	state.bodies.emplace(booster->id, booster);
 
-	RigidBody telescope = {
+	RigidBody* telescope = new RigidBody{
 		.id = nextID++,
 		.name = "telescope",
 		.width = 4.2,
@@ -163,9 +163,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(telescope.id, telescope);
+	state.bodies.emplace(telescope->id, telescope);
 
-	RigidBody lander = {
+	RigidBody* lander = new RigidBody{
 		.id = nextID++,
 		.name = "lander",
 		.width = 4.5,
@@ -176,9 +176,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(lander.id, lander);
+	state.bodies.emplace(lander->id, lander);
 
-	RigidBody module = {
+	RigidBody* module = new RigidBody{
 		.id = nextID++,
 		.name = "module",
 		.width = 6.0,
@@ -189,9 +189,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(module.id, module);
+	state.bodies.emplace(module->id, module);
 
-	RigidBody cargo = {
+	RigidBody* cargo = new RigidBody{
 		.id = nextID++,
 		.name = "cargo",
 		.width = 5.0,
@@ -202,9 +202,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(cargo.id, cargo);
+	state.bodies.emplace(cargo->id, cargo);
 
-	RigidBody debris2 = {
+	RigidBody* debris2 = new RigidBody{
 		.id = nextID++,
 		.name = "debris2",
 		.width = 0.8,
@@ -215,9 +215,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(debris2.id, debris2);
+	state.bodies.emplace(debris2->id, debris2);
 
-	RigidBody station = {
+	RigidBody* station = new RigidBody{
 		.id = nextID++,
 		.name = "station",
 		.width = 15.0,
@@ -228,9 +228,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(station.id, station);
+	state.bodies.emplace(station->id, station);
 
-	RigidBody hauler = {
+	RigidBody* hauler = new RigidBody{
 		.id = nextID++,
 		.name = "hauler",
 		.width = 7.5,
@@ -241,9 +241,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(hauler.id, hauler);
+	state.bodies.emplace(hauler->id, hauler);
 
-	RigidBody drone = {
+	RigidBody* drone = new RigidBody{
 		.id = nextID++,
 		.name = "drone",
 		.width = 0.5,
@@ -254,9 +254,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(drone.id, drone);
+	state.bodies.emplace(drone->id, drone);
 
-	RigidBody transport = {
+	RigidBody* transport = new RigidBody{
 		.id = nextID++,
 		.name = "transport",
 		.width = 12.0,
@@ -267,9 +267,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(transport.id, transport);
+	state.bodies.emplace(transport->id, transport);
 
-	RigidBody debris3 = {
+	RigidBody* debris3 = new RigidBody{
 		.id = nextID++,
 		.name = "debris3",
 		.width = 1.2,
@@ -280,9 +280,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(debris3.id, debris3);
+	state.bodies.emplace(debris3->id, debris3);
 
-	RigidBody cruiser = {
+	RigidBody* cruiser = new RigidBody{
 		.id = nextID++,
 		.name = "cruiser",
 		.width = 10.5,
@@ -293,9 +293,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(cruiser.id, cruiser);
+	state.bodies.emplace(cruiser->id, cruiser);
 
-	RigidBody freighter = {
+	RigidBody* freighter = new RigidBody{
 		.id = nextID++,
 		.name = "freighter",
 		.width = 14.0,
@@ -306,9 +306,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(freighter.id, freighter);
+	state.bodies.emplace(freighter->id, freighter);
 
-	RigidBody observer = {
+	RigidBody* observer = new RigidBody{
 		.id = nextID++,
 		.name = "observer",
 		.width = 3.0,
@@ -319,9 +319,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(observer.id, observer);
+	state.bodies.emplace(observer->id, observer);
 
-	RigidBody debris4 = {
+	RigidBody* debris4 = new RigidBody{
 		.id = nextID++,
 		.name = "debris4",
 		.width = 0.6,
@@ -332,9 +332,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(debris4.id, debris4);
+	state.bodies.emplace(debris4->id, debris4);
 
-	RigidBody interceptor = {
+	RigidBody* interceptor = new RigidBody{
 		.id = nextID++,
 		.name = "interceptor",
 		.width = 5.5,
@@ -345,9 +345,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(interceptor.id, interceptor);
+	state.bodies.emplace(interceptor->id, interceptor);
 
-	RigidBody tanker = {
+	RigidBody* tanker = new RigidBody{
 		.id = nextID++,
 		.name = "tanker",
 		.width = 11.0,
@@ -358,9 +358,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(tanker.id, tanker);
+	state.bodies.emplace(tanker->id, tanker);
 
-	RigidBody relay = {
+	RigidBody* relay = new RigidBody{
 		.id = nextID++,
 		.name = "relay",
 		.width = 2.5,
@@ -371,9 +371,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(relay.id, relay);
+	state.bodies.emplace(relay->id, relay);
 
-	RigidBody miner = {
+	RigidBody* miner = new RigidBody{
 		.id = nextID++,
 		.name = "miner",
 		.width = 8.0,
@@ -384,9 +384,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(miner.id, miner);
+	state.bodies.emplace(miner->id, miner);
 
-	RigidBody scout = {
+	RigidBody* scout = new RigidBody{
 		.id = nextID++,
 		.name = "scout",
 		.width = 3.5,
@@ -397,9 +397,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(scout.id, scout);
+	state.bodies.emplace(scout->id, scout);
 
-	RigidBody debris5 = {
+	RigidBody* debris5 = new RigidBody{
 		.id = nextID++,
 		.name = "debris5",
 		.width = 1.0,
@@ -410,9 +410,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(debris5.id, debris5);
+	state.bodies.emplace(debris5->id, debris5);
 
-	RigidBody corvette = {
+	RigidBody* corvette = new RigidBody{
 		.id = nextID++,
 		.name = "corvette",
 		.width = 6.5,
@@ -423,9 +423,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(corvette.id, corvette);
+	state.bodies.emplace(corvette->id, corvette);
 
-	RigidBody carrier = {
+	RigidBody* carrier = new RigidBody{
 		.id = nextID++,
 		.name = "carrier",
 		.width = 20.0,
@@ -436,9 +436,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(carrier.id, carrier);
+	state.bodies.emplace(carrier->id, carrier);
 
-	RigidBody refinery = {
+	RigidBody* refinery = new RigidBody{
 		.id = nextID++,
 		.name = "refinery",
 		.width = 18.0,
@@ -449,9 +449,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(refinery.id, refinery);
+	state.bodies.emplace(refinery->id, refinery);
 
-	RigidBody tug = {
+	RigidBody* tug = new RigidBody{
 		.id = nextID++,
 		.name = "tug",
 		.width = 4.5,
@@ -462,9 +462,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(tug.id, tug);
+	state.bodies.emplace(tug->id, tug);
 
-	RigidBody beacon = {
+	RigidBody* beacon = new RigidBody{
 		.id = nextID++,
 		.name = "beacon",
 		.width = 1.5,
@@ -475,9 +475,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(beacon.id, beacon);
+	state.bodies.emplace(beacon->id, beacon);
 
-	RigidBody debris6 = {
+	RigidBody* debris6 = new RigidBody{
 		.id = nextID++,
 		.name = "debris6",
 		.width = 0.7,
@@ -488,9 +488,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(debris6.id, debris6);
+	state.bodies.emplace(debris6->id, debris6);
 
-	RigidBody liner = {
+	RigidBody* liner = new RigidBody{
 		.id = nextID++,
 		.name = "liner",
 		.width = 13.0,
@@ -501,9 +501,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(liner.id, liner);
+	state.bodies.emplace(liner->id, liner);
 
-	RigidBody constructor = {
+	RigidBody* constructor = new RigidBody{
 		.id = nextID++,
 		.name = "constructor",
 		.width = 16.0,
@@ -514,9 +514,9 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.throttle = 0.0
 	};
 
-	state.bodies.emplace(constructor.id, constructor);
+	state.bodies.emplace(constructor->id, constructor);
 
-	RigidBody surveyor = {
+	RigidBody* surveyor = new RigidBody{
 		.id = nextID++,
 		.name = "surveyor",
 		.width = 3.2,
@@ -524,19 +524,28 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 		.mass = 6'500.0,
 		.velocity = { 22.0, -16.0 },
 		.position = { 145.0, -145.0 },
-		.throttle = 0.0
+		.throttle = 0.0,
 	};
 
-	state.bodies.emplace(surveyor.id, surveyor);
+	state.bodies.emplace(surveyor->id, surveyor);
 
 	std::cout << "Number of objects: " << nextID << std::endl;
+	setActiveBody(rocket);
+	activeBody->colour = Red;
 
 	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
-	forces.push_back(std::make_unique<ThrustForce>(10000, 0));
+	forces.push_back(std::make_unique<ThrustForce>(10'000, 0));
+}
+
+Simulation::~Simulation() {
+	for (auto& [id, body] : state.bodies) {
+		delete body;
+	}
+	state.bodies.clear();
 }
 
 void Simulation::simulateGpuDelay() {
-	const int iterations = 400000;
+	const int iterations = 400'000;
 	volatile double result = 0.0;
 	
 	for (int i = 0; i < iterations; i++) {
@@ -550,17 +559,27 @@ void Simulation::step(InputState& input) {
 		double netTorque = 0.0;
 
 		for (const auto& force : forces) {
-			netForce += force->computeForce(body);
-			netTorque += force->computeTorque(body);
+			netForce += force->computeForce(*body);
+			netTorque += force->computeTorque(*body);
 		}
 
-		Vector2 acceleration = netForce / body.mass;
-		body.velocity += acceleration * dt;
-		body.position += body.velocity * dt;
+		Vector2 acceleration = netForce / body->mass;
+		body->velocity += acceleration * dt;
+		body->position += body->velocity * dt;
 
-		double angularAcceleration = netTorque / body.momOfInertia;
-		body.angularFrequency += angularAcceleration * dt;
-		body.angle += body.angularFrequency * dt;
+		if (input.WPressed) {
+			activeBody->throttle = 1.0;
+		}
+		else if (input.SPressed) {
+			activeBody->throttle = -1.0;
+		}
+		else {
+			activeBody->throttle = 0.0;
+		}
+
+		double angularAcceleration = netTorque / body->momOfInertia;
+		body->angularFrequency += angularAcceleration * dt;
+		body->angle += body->angularFrequency * dt;
 
 		/*if (count % 60 == 0) {
 			std::cout << "Object: " << body.name << "\n";

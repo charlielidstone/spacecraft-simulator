@@ -9,6 +9,8 @@ struct InputState {
 	bool DPressed = false;
 	bool LeftArrowPressed = false;
 	bool RightArrowPressed = false;
+	bool DownArrowPressed = false;
+	bool UpArrowPressed = false;
 };
 
 #endif
