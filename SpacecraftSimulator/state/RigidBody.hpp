@@ -25,6 +25,7 @@ struct RigidBody {
 	double height = 0.0;
 
 	double mass = 1.0;
+	Vector2 centreOfMass = { width / 2, height / 2 }; // pretty sure this doesn't work so I'll have to see how to do this properly
 	Vector2 velocity = { 0.0, 0.0 };
 	Vector2 position = { 0.0, 0.0 };
 

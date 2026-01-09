@@ -531,7 +531,7 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 
 	std::cout << "Number of objects: " << nextID << std::endl;
 	setActiveBody(rocket);
-	activeBody->colour = Red;
+	state.activeBody->colour = Red;
 
 	forces.push_back(std::make_unique<GravityForce>(Vector2{ 0.0, -9.81 }));
 	forces.push_back(std::make_unique<ThrustForce>(10'000, 0));
@@ -568,13 +568,13 @@ void Simulation::step(InputState& input) {
 		body->position += body->velocity * dt;
 
 		if (input.WPressed) {
-			activeBody->throttle = 1.0;
+			state.activeBody->throttle = 1.0;
 		}
 		else if (input.SPressed) {
-			activeBody->throttle = -1.0;
+			state.activeBody->throttle = -1.0;
 		}
 		else {
-			activeBody->throttle = 0.0;
+			state.activeBody->throttle = 0.0;
 		}
 
 		double angularAcceleration = netTorque / body->momOfInertia;
@@ -605,10 +605,10 @@ const WorldState& Simulation::getState() const {
 }
 
 void Simulation::setActiveBody(RigidBody* body) {
-	if (activeBody) activeBody->isActive = false;
-	activeBody = body;
-	if (activeBody) {
-		activeBody->isActive = true;
+	if (state.activeBody) state.activeBody->isActive = false;
+	state.activeBody = body;
+	if (state.activeBody) {
+		state.activeBody->isActive = true;
 	} else {
 		std::cout << "No active body set" << std::endl;
 	}

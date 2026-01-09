@@ -13,17 +13,17 @@ class Renderer {
 		sf::RenderWindow window;
 
 		Renderer()
-			: window(sf::VideoMode({ 1200, 1000 }), "Spacecraft Simulator"), scale(10.0), accumulator(0.0)
+			: window(sf::VideoMode({ 1200, 1000 }), "Spacecraft Simulator"), scale(1.0), accumulator(0.0)
 		{}
 
 		void setup(const WorldState& state) {
 			marker1.setSize(sf::Vector2f(1.0, 20.0));
 			marker1.setFillColor(sf::Color::Red);
-			marker1.setPosition({ sf::Vector2f(static_cast<float>(origin.x), static_cast<float>(origin.y)) });
+			marker1.setPosition({ sf::Vector2f(static_cast<float>(relativeOrigin.x), static_cast<float>(relativeOrigin.y)) });
 			
 			marker2.setSize(sf::Vector2f(1.0, 20.0));
 			marker2.setFillColor(sf::Color::Blue);
-			marker2.setPosition({ sf::Vector2f(static_cast<float>(origin.x + 305.81039), static_cast<float>(origin.y)) });
+			marker2.setPosition({ sf::Vector2f(static_cast<float>(relativeOrigin.x + 305.81039), static_cast<float>(relativeOrigin.y)) });
 
 			marker1.setOrigin(sf::Vector2f(0.5F, 10.0F));
 			marker2.setOrigin(sf::Vector2f(0.5F, 10.0F));
@@ -47,10 +47,13 @@ class Renderer {
 		void render(const WorldState& state) {
 			for (const auto& [key, body] : state.bodies) {
 				auto it = drawables.find(body->id);
+				//if (it != drawables.end() && !body->isActive) {
 				if (it != drawables.end()) {
 					updateObject(it->second, *body);
 				}
 			}
+
+			//relativeOrigin = origin + state.activeBody->position;	
 
 			window.clear();
 			
@@ -113,12 +116,12 @@ class Renderer {
 			}
 			
 			sf::RectangleShape originLineX(sf::Vector2f(static_cast<float>(WINDOW_WIDTH), 1.0f));
-			originLineX.setPosition({ 0, static_cast<float>(origin.y) });
+			originLineX.setPosition({ 0, static_cast<float>(relativeOrigin.y) });
 			originLineX.setFillColor(sf::Color(40, 40, 40, 255));
 			gridLines.push_back(originLineX);
 			
 			sf::RectangleShape originLineY(sf::Vector2f(1.0f, static_cast<float>(WINDOW_HEIGHT)));
-			originLineY.setPosition({ static_cast<float>(origin.x), 0 });
+			originLineY.setPosition({ static_cast<float>(relativeOrigin.x), 0 });
 			originLineY.setFillColor(sf::Color(40, 40, 40, 255));
 			gridLines.push_back(originLineY);
 		}
@@ -130,8 +133,8 @@ class Renderer {
 		 */
 		void updateObject(Drawable& drawable, const RigidBody& body) {
 			drawable.object.setPosition({
-				static_cast<float>(origin.x + body.position.x * scale),
-				static_cast<float>(origin.y - body.position.y * scale)
+				static_cast<float>(relativeOrigin.x + body.position.x * scale),
+				static_cast<float>(relativeOrigin.y - body.position.y * scale)
 			});
 			drawable.object.setRotation(sf::radians(body.angle - (std::numbers::pi / 2)));
 			drawable.object.setOrigin(sf::Vector2f(body.width / 2, body.height / 2));
@@ -150,6 +153,7 @@ class Renderer {
 		const int WINDOW_WIDTH = 1200;
 		const int WINDOW_HEIGHT = 1000;
 		const Vector2 origin = { WINDOW_WIDTH / 2.0, WINDOW_HEIGHT / 2.0 };
+		Vector2 relativeOrigin = origin;
 		sf::Clock frameClock;
 		double accumulator;
 		

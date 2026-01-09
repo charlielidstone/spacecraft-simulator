@@ -13,36 +13,83 @@ C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Rende
 C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,70): warning C4244:         ]
   (compiling source file 'Application.cpp')
   
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(136,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(139,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Application.cpp')
   
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,71): warning C4244:         with
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,71): warning C4244:         [
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,71): warning C4244:             T=float
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,71): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:         ]
   (compiling source file 'Application.cpp')
   
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,54): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,54): warning C4244:         with
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,54): warning C4244:         [
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,54): warning C4244:             T=float
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(137,54): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:         ]
   (compiling source file 'Application.cpp')
   
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,73): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,73): warning C4244:         with
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,73): warning C4244:         [
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,73): warning C4244:             T=float
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,73): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:         ]
   (compiling source file 'Application.cpp')
   
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,52): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,52): warning C4244:         with
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,52): warning C4244:         [
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,52): warning C4244:             T=float
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(138,52): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:         ]
   (compiling source file 'Application.cpp')
   
+  main.cpp
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,83): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,83): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,83): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,83): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,83): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,70): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,70): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,70): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,70): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(39,70): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(139,55): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'main.cpp')
+  
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,71): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(140,54): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,73): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\rendering\Renderer.hpp(141,52): warning C4244:         ]
+  (compiling source file 'main.cpp')
+  
+  Generating Code...
 C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Application.cpp(102,1): warning C4172: returning address of local variable or temporary : input
   SpacecraftSimulator.vcxproj -> C:\Users\charl\Projects\spacecraft-simulator\x64\Debug\SpacecraftSimulator.exe
