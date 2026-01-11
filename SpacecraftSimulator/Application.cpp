@@ -28,12 +28,13 @@ void Application::run() {
 			std::cout << "Frame count: " << simulation.getFrameCount() << "\n";
 			std::cout << "Scale: " << renderer.getScale() << "\n";
 
-			if (getInput().DownArrowPressed && renderer.getScale() > 0) {
+			/*if (getInput().DownArrowPressed && renderer.getScale() > 0) {
 				renderer.setScale(renderer.getScale() - 0.01);
 			}
 			else if (getInput().UpArrowPressed) {
 				renderer.setScale(renderer.getScale() + 0.01);
-			}
+				renderer.setScale(renderer.getScale() + 0.01);
+			}*/
 
 			if (accumulator > 0.009) {
 				std::cout << "Physics behind real-time by: " << accumulator << " seconds" << std::endl;

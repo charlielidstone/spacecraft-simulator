@@ -45,6 +45,12 @@
     <ClCompile Include="Application.cpp">
       <Filter>application</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math\Vector2.hpp">
