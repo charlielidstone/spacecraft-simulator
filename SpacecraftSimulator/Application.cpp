@@ -28,13 +28,18 @@ void Application::run() {
 			std::cout << "Frame count: " << simulation.getFrameCount() << "\n";
 			std::cout << "Scale: " << renderer.getScale() << "\n";
 
-			/*if (getInput().DownArrowPressed && renderer.getScale() > 0) {
-				renderer.setScale(renderer.getScale() - 0.01);
+			if (getInput().DownArrowPressed) {
+				sf::Vector2f currentSize = renderer.view.getSize();
+				sf::Vector2f newSize = sf::Vector2f(currentSize.x + 10.f, currentSize.y + 10.f);
+				renderer.view.setSize(newSize);
+				renderer.window.setView(renderer.view);
 			}
 			else if (getInput().UpArrowPressed) {
-				renderer.setScale(renderer.getScale() + 0.01);
-				renderer.setScale(renderer.getScale() + 0.01);
-			}*/
+				sf::Vector2f currentSize = renderer.view.getSize();
+				sf::Vector2f newSize = sf::Vector2f( currentSize.x - 10.f, currentSize.y - 10.f);
+				renderer.view.setSize(newSize);
+				renderer.window.setView(renderer.view);
+			}
 
 			if (accumulator > 0.009) {
 				std::cout << "Physics behind real-time by: " << accumulator << " seconds" << std::endl;

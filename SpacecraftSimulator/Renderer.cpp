@@ -7,6 +7,7 @@ Renderer::Renderer() : scale(1.0), accumulator(0.0) {
 	//view = sf::View(sf::FloatRect({ 100.f, 100.f }, { 600.f, 600.f }));
 	view = sf::View({ 250.f, 250.f }, { 600.f, 600.f });
 	view.setViewport(sf::FloatRect({ 0.f, 0.f }, { 1.f, 1.f }));
+	view.setSize({ 1000.f, 1000.f });
 	window.setView(view);
 }
 
