@@ -24,13 +24,13 @@ class Renderer {
 
 	private:
 		void generateGrid();
-		void updateObject(Drawable& drawable, const RigidBody& body);
+		void updateObject(Drawable& drawable, const Body& body);
 
 		// @brief At scale = 1, 1 unit in simulation space = 1 SFML unit
 		double scale;
 		const double metersPerGridSquare = 10.0; // Each grid square = 1 metre
-		const int WINDOW_WIDTH = 500;
-		const int WINDOW_HEIGHT = 500;
+		const int WINDOW_WIDTH = 1000;
+		const int WINDOW_HEIGHT = 1000;
 		const Vector2 origin = { WINDOW_WIDTH / 2.0, WINDOW_HEIGHT / 2.0 };
 		Vector2 relativeOrigin = origin;
 		sf::Clock frameClock;

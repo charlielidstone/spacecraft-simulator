@@ -2,16 +2,31 @@
 #include <iostream>
 #include <numbers>
 
-Renderer::Renderer() : scale(1.0), accumulator(0.0) {
+Renderer::Renderer() : scale(0), accumulator(0.0) {
 	window = sf::RenderWindow(sf::VideoMode({ static_cast<unsigned int>(WINDOW_WIDTH), static_cast<unsigned int>(WINDOW_HEIGHT) }), "Spacecraft Simulator");
 	//view = sf::View(sf::FloatRect({ 100.f, 100.f }, { 600.f, 600.f }));
-	view = sf::View({ 250.f, 250.f }, { 600.f, 600.f });
-	view.setViewport(sf::FloatRect({ 0.f, 0.f }, { 1.f, 1.f }));
+	view = sf::View({ static_cast<float>(WINDOW_WIDTH/2), static_cast<float>(WINDOW_HEIGHT/2) }, { 600.f, 600.f });
+	//view.setViewport(sf::FloatRect({ 0.f, 0.f }, { 1.f, 1.f }));
 	view.setSize({ 1000.f, 1000.f });
 	window.setView(view);
 }
 
 void Renderer::setup(const WorldState& state) {
+	// Find the largest body to determine appropriate scale
+	double maxRadius = 0.0;
+	for (const auto& [key, body] : state.bodies) {
+		double bodyRadius = std::max(body->width, body->height) / 2.0;
+		maxRadius = std::max(maxRadius, bodyRadius);
+	}
+	
+	// Calculate scale so largest object fits with some margin
+	if (maxRadius > 0.0) {
+		const double margin = 0.5; // Use 50% of window to leave some space
+		const double availableSpace = std::min(WINDOW_WIDTH, WINDOW_HEIGHT) * margin;
+		 setScale(availableSpace / (maxRadius * 2.0));
+		 std::cout << "scale: " << scale << std::endl;
+	}
+	
 	marker1.setSize(sf::Vector2f(1.0, 20.0));
 	marker1.setFillColor(sf::Color::Red);
 	marker1.setPosition({ sf::Vector2f(static_cast<float>(relativeOrigin.x), static_cast<float>(relativeOrigin.y)) });
@@ -56,8 +71,8 @@ void Renderer::render(const WorldState& state) {
 		window.draw(line);
 	}
 
-	window.draw(marker1);
-	window.draw(marker2);
+	//window.draw(marker1);
+	//window.draw(marker2);
 
 	for (const auto& [id, drawable] : drawables) {
 		window.draw(drawable.object);
@@ -140,13 +155,14 @@ void Renderer::generateGrid() {
 	gridLines.push_back(borderRight);
 }
 
-void Renderer::updateObject(Drawable& drawable, const RigidBody& body) {
+void Renderer::updateObject(Drawable& drawable, const Body& body) {
 	drawable.object.setPosition({
 		static_cast<float>(relativeOrigin.x + body.position.x * scale),
 		static_cast<float>(relativeOrigin.y - body.position.y * scale)
 	});
 	drawable.object.setRotation(sf::radians(body.angle - (std::numbers::pi / 2)));
 	drawable.object.setOrigin(sf::Vector2f(body.width / 2, body.height / 2));
+	std::cout << "body size: " << (body.width * scale) << std::endl;
 	drawable.object.setSize(sf::Vector2f(body.width * scale, body.height * scale));
 
 	if (body.colour == Red) {

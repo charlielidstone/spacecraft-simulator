@@ -83,5 +83,14 @@
     <ClInclude Include="rendering\Drawable.hpp">
       <Filter>rendering</Filter>
     </ClInclude>
+    <ClInclude Include="state\LargeBody.hpp">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="state\Body.hpp">
+      <Filter>state</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

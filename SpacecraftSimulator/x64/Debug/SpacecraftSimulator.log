@@ -1,3 +1,2 @@
-﻿  Application.cpp
-C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Application.cpp(108,1): warning C4172: returning address of local variable or temporary : input
+﻿  Simulation.cpp
   SpacecraftSimulator.vcxproj -> C:\Users\charl\Projects\spacecraft-simulator\x64\Debug\SpacecraftSimulator.exe

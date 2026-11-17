@@ -26,7 +26,7 @@ class Simulation {
 
 		void simulateGpuDelay();
 
-		void setActiveBody(RigidBody* body);
+		void setActiveBody(Body* body);
 };
 
 #endif

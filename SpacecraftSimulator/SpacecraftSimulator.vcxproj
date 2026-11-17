@@ -144,7 +144,10 @@
     <ClInclude Include="physics\Force.hpp" />
     <ClInclude Include="rendering\Drawable.hpp" />
     <ClInclude Include="rendering\Renderer.hpp" />
+    <ClInclude Include="Shape.hpp" />
     <ClInclude Include="simulation\Simulation.hpp" />
+    <ClInclude Include="state\Body.hpp" />
+    <ClInclude Include="state\LargeBody.hpp" />
     <ClInclude Include="state\ReferenceMark.hpp" />
     <ClInclude Include="state\RigidBody.hpp" />
     <ClInclude Include="state\WorldState.hpp" />
