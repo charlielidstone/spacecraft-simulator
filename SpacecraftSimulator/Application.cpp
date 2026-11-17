@@ -46,7 +46,7 @@ void Application::run() {
 				
 				// Time each operation
 				auto t1 = std::chrono::high_resolution_clock::now();
-				InputState& input = getInput();
+				InputState input = getInput();
 				auto t2 = std::chrono::high_resolution_clock::now();
 				simulation.step(input);
 				auto t3 = std::chrono::high_resolution_clock::now();
@@ -54,7 +54,7 @@ void Application::run() {
 				std::cout << "  Input: " << std::chrono::duration<double, std::milli>(t2 - t1).count() << "ms\n";
 				std::cout << "  Simulation: " << std::chrono::duration<double, std::milli>(t3 - t2).count() << "ms\n";
 			} else {
-				InputState& input = getInput();
+				InputState input = getInput();
 				simulation.step(input);
 			}
 			accumulator -= (1 / sim_freq);

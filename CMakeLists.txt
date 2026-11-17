@@ -28,3 +28,12 @@ target_link_libraries(SpacecraftSimulator PRIVATE
     SFML::Window
     SFML::System
 )
+
+if(WIN32)
+    add_custom_command(TARGET SpacecraftSimulator POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            $<TARGET_RUNTIME_DLLS:SpacecraftSimulator>
+            $<TARGET_FILE_DIR:SpacecraftSimulator>
+        COMMAND_EXPAND_LISTS
+    )
+endif()

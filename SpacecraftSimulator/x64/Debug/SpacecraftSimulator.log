@@ -1,2 +1,38 @@
-﻿  Simulation.cpp
+﻿  Application.cpp
+  Renderer.cpp
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,81): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,81): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,81): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,81): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,81): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,68): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,68): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,68): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,68): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(49,68): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(163,53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,69): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,69): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,69): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,69): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,69): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,52): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,52): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,52): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,52): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(164,52): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,71): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,71): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,71): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,71): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,71): warning C4244:         ]
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,50): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,50): warning C4244:         with
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,50): warning C4244:         [
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,50): warning C4244:             T=float
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Renderer.cpp(166,50): warning C4244:         ]
+  Simulation.cpp
+  main.cpp
+  Generating Code...
+C:\Users\charl\Projects\spacecraft-simulator\SpacecraftSimulator\Application.cpp(108,1): warning C4172: returning address of local variable or temporary : input
   SpacecraftSimulator.vcxproj -> C:\Users\charl\Projects\spacecraft-simulator\x64\Debug\SpacecraftSimulator.exe
