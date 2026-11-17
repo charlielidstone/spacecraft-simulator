@@ -1,6 +1,9 @@
 #include "rendering/Renderer.hpp"
 #include <iostream>
 #include <numbers>
+#include <sstream>
+#include <cmath>
+#include <array>
 
 Renderer::Renderer() : scale(0), accumulator(0.0) {
 	window = sf::RenderWindow(sf::VideoMode({ static_cast<unsigned int>(WINDOW_WIDTH), static_cast<unsigned int>(WINDOW_HEIGHT) }), "Spacecraft Simulator");
@@ -9,6 +12,8 @@ Renderer::Renderer() : scale(0), accumulator(0.0) {
 	//view.setViewport(sf::FloatRect({ 0.f, 0.f }, { 1.f, 1.f }));
 	view.setSize({ 1000.f, 1000.f });
 	window.setView(view);
+
+	loadHudFont();
 }
 
 void Renderer::setup(const WorldState& state) {
@@ -77,7 +82,24 @@ void Renderer::render(const WorldState& state) {
 	for (const auto& [id, drawable] : drawables) {
 		window.draw(drawable.object);
 	}
-	
+
+	// HUD overlay: draw in screen space so it stays pinned top-left regardless of zoom/pan
+	if (hudFontLoaded) {
+		std::ostringstream oss;
+		oss << "FPS: " << static_cast<int>(std::lround(currentFps));
+
+		sf::Text fpsText(hudFont, oss.str(), 16);
+		fpsText.setFillColor(sf::Color::White);
+		fpsText.setOutlineColor(sf::Color::Black);
+		fpsText.setOutlineThickness(1.f);
+		fpsText.setPosition({ 6.f, 4.f });
+
+		const sf::View previousView = window.getView();
+		window.setView(window.getDefaultView());
+		window.draw(fpsText);
+		window.setView(previousView);
+	}
+
 	window.display();
 }
 
@@ -101,6 +123,37 @@ double Renderer::getScale() {
 
 void Renderer::setScale(double newScale) {
 	scale = newScale;
+}
+
+void Renderer::setFps(double fps) {
+	// Light exponential smoothing so the readout doesn't flicker every frame
+	if (currentFps <= 0.0) {
+		currentFps = fps;
+	} else {
+		currentFps = currentFps * 0.9 + fps * 0.1;
+	}
+}
+
+void Renderer::loadHudFont() {
+	// SFML 3 has no built-in font, so load the first system font that exists.
+	// Covers common Linux paths plus Windows so the VS build works too.
+	const std::array<const char*, 6> candidates = {
+		"/usr/share/fonts/liberation/LiberationSans-Regular.ttf",
+		"/usr/share/fonts/noto/NotoSans-Regular.ttf",
+		"/usr/share/fonts/TTF/DejaVuSans.ttf",
+		"/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+		"C:/Windows/Fonts/arial.ttf",
+		"C:/Windows/Fonts/segoeui.ttf",
+	};
+
+	for (const char* path : candidates) {
+		if (hudFont.openFromFile(path)) {
+			hudFontLoaded = true;
+			return;
+		}
+	}
+
+	std::cout << "HUD font not found; FPS overlay disabled" << std::endl;
 }
 
 void Renderer::generateGrid() {

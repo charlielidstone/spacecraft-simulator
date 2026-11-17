@@ -65,6 +65,7 @@ void Application::run() {
 		}
 
 		auto renderStart = std::chrono::high_resolution_clock::now();
+		if (frameTime > 0.0) renderer.setFps(1.0 / frameTime);
 		const WorldState& state = simulation.getState();
 		renderer.render(state);
 		auto renderEnd = std::chrono::high_resolution_clock::now();

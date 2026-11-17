@@ -21,10 +21,12 @@ class Renderer {
 		int handleWindowEvents();
 		double getScale();
 		void setScale(double newScale);
+		void setFps(double fps);
 
 	private:
 		void generateGrid();
 		void updateObject(Drawable& drawable, const Body& body);
+		void loadHudFont();
 
 		// @brief At scale = 1, 1 unit in simulation space = 1 SFML unit
 		double scale;
@@ -35,6 +37,11 @@ class Renderer {
 		Vector2 relativeOrigin = origin;
 		sf::Clock frameClock;
 		double accumulator;
+
+		// HUD / overlay
+		sf::Font hudFont;
+		bool hudFontLoaded = false;
+		double currentFps = 0.0;
 		
 		std::vector<sf::RectangleShape> gridLines;
 		
