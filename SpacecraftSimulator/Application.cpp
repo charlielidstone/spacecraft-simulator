@@ -76,7 +76,7 @@ void Application::run() {
 	}
 }
 
-InputState& Application::getInput() {
+InputState Application::getInput() {
 	InputState input{};
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RShift)) {
 		input.shiftPressed = true;

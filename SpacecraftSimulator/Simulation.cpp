@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 #include <chrono>
+#include <random>
+#include <string>
 
 Simulation::Simulation(double timestep) : dt(timestep) {
 	ObjectID nextID = 0;
@@ -20,6 +22,29 @@ Simulation::Simulation(double timestep) : dt(timestep) {
 	rocket->throttle = 0.0;
 
 	state.bodies.emplace(rocket->id, rocket);
+
+	// Dummy objects with randomised size, mass, position and velocity
+	std::mt19937 rng(std::random_device{}());
+	std::uniform_real_distribution<double> posDist(-500.0, 500.0);
+	std::uniform_real_distribution<double> velDist(-50.0, 50.0);
+	std::uniform_real_distribution<double> sizeDist(5.0, 40.0);
+	std::uniform_real_distribution<double> massDist(10.0, 1000.0);
+
+	const int dummyCount = 1000;
+	for (int i = 0; i < dummyCount; i++) {
+		RigidBody* dummy = new RigidBody();
+		dummy->id = nextID++;
+		dummy->name = "dummy_" + std::to_string(i);
+		dummy->width = sizeDist(rng);
+		dummy->height = sizeDist(rng);
+		dummy->mass = massDist(rng);
+		dummy->position = { posDist(rng), posDist(rng) };
+		dummy->velocity = { velDist(rng), velDist(rng) };
+		dummy->throttle = 0.0;
+
+		state.bodies.emplace(dummy->id, dummy);
+	}
+
 
 	LargeBody* Sun = new LargeBody(50.0);
 	Sun->id = nextID++;
@@ -49,7 +74,7 @@ Simulation::~Simulation() {
 void Simulation::simulateGpuDelay() {
 	const int iterations = 400'000;
 	volatile double result = 0.0;
-	
+
 	for (int i = 0; i < iterations; i++) {
 		result += std::sin(i * 0.001) * std::cos(i * 0.001);
 	}
@@ -110,7 +135,7 @@ const WorldState& Simulation::getState() const {
 }
 
 void Simulation::setActiveBody(Body* body) {
-	if (state.activeBody) { 
+	if (state.activeBody) {
 		state.activeBody->isActive = false;
 		state.activeBody->colour = White;
 	}

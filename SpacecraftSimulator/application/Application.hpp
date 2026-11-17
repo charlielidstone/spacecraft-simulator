@@ -12,7 +12,7 @@ class Application {
 		void setup();
 		void run();
 
-		static InputState& getInput(); // this will need to be moved
+		static InputState getInput(); // this will need to be moved
 
 	private:
 		double sim_freq;
